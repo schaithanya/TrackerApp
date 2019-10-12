@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Expense</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="createExpense()">
+        <ion-icon name="add-circle"></ion-icon>
+      </button>
+    </ion-buttons>    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <div style="display: block" *ngIf="doughnutChartLabels?.length > 0">
+  <canvas baseChart
+              [data]="demodoughnutChartData"
+              [labels]="doughnutChartLabels"
+              [chartType]="doughnutChartType"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+    </div>
+  </ion-item>  
+  <ion-item >
+    <ion-row>
+        <ion-col text-center>
+          <h1>Rs. {{total}}</h1>    
+        </ion-col>
+    </ion-row>
+  </ion-item>  
+  <ion-item-sliding *ngFor="let item of doughnutChartLabels">
+    <ion-item>        
+      <ion-label text-wrap>
+        <h3>{{ item }}</h3>          
+          <p>{{ expensesDisplay[item] }}</p>   
+           <ion-buttons end>
+              <button ion-button icon-only (click)="showDetailExpense(item)">
+                <ion-icon name="ios-arrow-dropright"></ion-icon>
+              </button> 
+            </ion-buttons>                                    
+      </ion-label>                   
+    </ion-item>
+  </ion-item-sliding>
+
+</ion-content>

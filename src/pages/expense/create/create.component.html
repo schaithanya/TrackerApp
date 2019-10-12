@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title> Expense </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <h2>Expense Data</h2>
+  <form (ngSubmit)="saveExpense()">
+     <ion-item>      
+      <ion-label>Expense Type</ion-label>
+      <ion-select placeholder="Select" [(ngModel)]="expense.type" type="text" name="type" required="">
+        <ion-option value="Groceries">Groceries</ion-option>
+        <ion-option value="Food">Food</ion-option>
+        <ion-option value="Recharge">Recharge</ion-option>        
+        <ion-option value="Fuel">Fuel</ion-option>      
+      </ion-select>      
+    </ion-item>
+    <ion-item>
+        <ion-label>Expense Amount</ion-label>
+        <ion-input type="number" [(ngModel)]="expense.amount" name="expenseAmount" required="" ></ion-input>
+    </ion-item>            
+
+ <button ion-button type="submit" >Save Data</button>
+  </form>
+</ion-content>

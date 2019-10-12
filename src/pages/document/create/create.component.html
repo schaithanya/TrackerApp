@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title> Document Upload </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>  
+  <form (ngSubmit)="saveDocumentData()">
+     <ion-item>
+        <ion-label>Document Name</ion-label>
+        <ion-input type="text" [(ngModel)]="document.documentName" name="documentName" required="" ></ion-input>
+      </ion-item>    
+    <ion-item>      
+      <ion-label>Document Type</ion-label>
+      <ion-select placeholder="Select" [(ngModel)]="document.type" type="text" name="type" required="">
+        <ion-option value="Personal">Personal</ion-option>
+        <ion-option value="Professional">Professional</ion-option>
+        <ion-option value="Bills">Bills</ion-option>        
+      </ion-select>      
+    </ion-item>
+     <ion-item>
+        <ion-label>Comments</ion-label>
+        <ion-input type="text" [(ngModel)]="document.comments" name="Comments" required="" ></ion-input>
+      </ion-item>      
+      <ion-item>                
+        <img [src]="url" height="200"> <br/>
+        <input type='file' accept="image/*" (change)="onSelectFile($event)">            
+      </ion-item>
+    <button ion-button type="submit" >Save Data</button>
+  </form>
+</ion-content>
