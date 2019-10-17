@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title> Create Post </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>  
+  <form (ngSubmit)="savePostData()">.
+    <ion-item>                
+        <img [src]="url" height="200"> <br/>
+        <input type='file' accept="image/*" (change)="onSelectFile($event)">            
+      </ion-item>
+     <ion-item>
+        <ion-label>Title</ion-label>
+        <ion-input type="text" [(ngModel)]="post.postTitle" name="documentName" required="" ></ion-input>
+      </ion-item>       
+     <ion-item>
+        <ion-label>Comments</ion-label>
+        <ion-input type="text" [(ngModel)]="post.postComments" name="Comments" required="" ></ion-input>
+      </ion-item>      
+      
+    <button ion-button type="submit" >Save Data</button>
+  </form>
+</ion-content>

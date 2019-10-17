@@ -1,12 +1,33 @@
 <ion-header>
-  <ion-navbar>
+  <ion-toolbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Home</ion-title>
-  </ion-navbar>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="createPost()">
+        <ion-icon name="add-circle"></ion-icon>
+      </button>
+    </ion-buttons>  
+  </ion-toolbar>  
 </ion-header>
 
-<ion-content padding>
-<button ion-button secondary menuToggle>Toggle Menu</button>
+<ion-content class="card-background-page">
+  <ion-card *ngFor = "let post of posts" color="light">   
+    <img src="{{getFileUrl(post.postPath)}}" />
+    <p>{{post.postTitle}}</p>    
+    <div class="card-subtitle">{{post.postComments}}</div>    
+    <ion-buttons end>
+      <button ion-button icon-only (click)="editPost(post)" >
+        <ion-icon name="create"> </ion-icon>
+      </button>
+       <button ion-button icon-only (click)="deletePost(post)">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+       <button ion-button icon-only (click)="downloadPost()">
+        <ion-icon name="download"></ion-icon>
+      </button>
+    </ion-buttons>    
+  </ion-card>  
+
 </ion-content>
