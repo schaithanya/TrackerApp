@@ -8,7 +8,7 @@ import {ExpenseDashboard} from '../../expense/expense.dashboard.component';
 @Component({
   selector: 'app-display',
   templateUrl: './display.component.html',
-  styles: ['table { width: 100%; } .delete-button { border-radius: 50%; width: 2em; height: 2em; display: flex; justify-content: center; align-items: center; }'],
+  styles: ['table { width: 100%; } .delete-button { border-radius: 50%; width: 2em; height: 2em; display: flex; justify-content: center; align-items: center; } '],
   providers:[ ExpenseStorageService]     
 })
 export class DisplayComponent implements OnInit {
@@ -30,8 +30,7 @@ export class DisplayComponent implements OnInit {
   loadItems(){
     this.expenseService.getExpenses().then(expenses => {
       this.expenses = expenses.filter((item: Expense) => item.type === this.expenseType);
-      this.dataSource = new MatTableDataSource(this.expenses);
-      console.log(expenses);
+      this.dataSource = new MatTableDataSource(this.expenses);      
      });          
   }   
 

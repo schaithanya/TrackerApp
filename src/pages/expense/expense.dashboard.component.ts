@@ -21,6 +21,7 @@ export class ExpenseDashboard {
   expense: Expense = <Expense>{};
   total: any = 0;
 
+
   constructor(private expenseService: ExpenseStorageService, private plt: Platform, public navCtrl: NavController) {
    this.plt.ready().then(() => {
       this.loadItems();
@@ -31,19 +32,22 @@ export class ExpenseDashboard {
     this.demodoughnutChartData = [];
     this.doughnutChartLabels = [];
     this.expenseService.getExpenses().then(expenses => {          
-      this.expenses = expenses;      
-      var groups = this.expenses.reduce(function(obj, val) {
-        if ( obj[val.type] ) {
-          obj[val.type] += parseInt(val.amount);                
-        } else {
-          obj[val.type] = parseInt(val.amount);           
-        }
-        return obj;
-      }, {});    
-      this.expensesDisplay = groups;      
-      this.total = Object.values(groups).reduce((a, b) => +a + +b, 0)
-      this.demodoughnutChartData.push(Object.values(groups));
-      this.doughnutChartLabels = Object.keys(groups);
+      if(expenses != null)
+      {
+        this.expenses = expenses;      
+        var groups = this.expenses.reduce(function(obj, val) {
+          if ( obj[val.type] ) {
+            obj[val.type] += parseInt(val.amount);                
+          } else {
+            obj[val.type] = parseInt(val.amount);           
+          }
+          return obj;
+        }, {});    
+        this.expensesDisplay = groups;      
+        this.total = Object.values(groups).reduce((a, b) => +a + +b, 0)
+        this.demodoughnutChartData.push(Object.values(groups));
+        this.doughnutChartLabels = Object.keys(groups);
+      }
       });
   }   
 
@@ -60,8 +64,7 @@ export class ExpenseDashboard {
     this.navCtrl.push(CreateComponent);
   }
 
-  private showDetailExpense(type: string){
-    console.log(type);
+  private showDetailExpense(type: string){    
     this.navCtrl.push(DisplayComponent, {expenseType: type});
   }
 }
