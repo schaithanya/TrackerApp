@@ -7,6 +7,10 @@ import { ExpenseModule } from '../pages/expense/expense.module';
 import { DocumentModule } from '../pages/document/document.module';
 import { SavingsModule } from '../pages/savings/savings.module';
 import { IonicStorageModule } from '@ionic/storage';
+import { FileService } from '../utilities/file.service';
+import { File } from "@ionic-native/file/ngx";
+import { FileTransfer, FileTransferObject } from "@ionic-native/file-transfer/ngx";
+import { FileOpener } from "@ionic-native/file-opener/ngx";
 
 @NgModule({
   declarations: [
@@ -25,7 +29,7 @@ import { IonicStorageModule } from '@ionic/storage';
   entryComponents: [
     MyApp   
   ],
-  providers: [
+  providers: [FileService, File, FileOpener, FileTransfer, FileTransferObject,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -4,6 +4,7 @@ import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 import { ExpenseDashboard } from '../pages/expense/expense.dashboard.component';
 import { DocumentDashboard } from '../pages/document/document.dashboard.component';
 import { SavingsDashboard } from '../pages/savings/savings.dashboard.component';
+import { FileService } from '../utilities/file.service';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,7 +17,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform) {
+  constructor(public platform: Platform, private fileService: FileService) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -32,9 +33,10 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
+      this.fileService.createAppDirectory();
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      
+
     });
   }
 
