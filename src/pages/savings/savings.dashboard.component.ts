@@ -1,26 +1,35 @@
 import { Component } from '@angular/core';
 import { Platform, NavController } from 'ionic-angular';
-import { CreateComponent } from '../savings/create/create.component';
+import { CreateComponent } from './create/create.component';
+import { EditComponent } from './edit/edit.component';
 import {SelectionModel} from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material';
-import { SavingsStorageService, Saving} from '../savings/savings-storage.service';
+import { SavingsStorageService, Saving} from './savings-storage.service';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({  
   templateUrl: 'savings.dashboard.component.html',
-  styles: ['table { width: 100%; } .delete-button { border-radius: 50%; width: 2em; height: 2em; display: flex; justify-content: center; align-items: center; }'],
+  styles: ['table { width: 100%; margin-left: auto; margin-right: auto; } tr.example-detail-row { height: 0; }tr.example-element-row:not(.example-expanded-row):hover { background: #777; }tr.example-element-row:not(.example-expanded-row):active { background: #efefef; }.example-element-row td { border-bottom-width: 0; } .example-element-detail {  overflow: hidden; display: flex; } .example-element-diagram { width: 100%;  border: 2px solid black; padding: 8px; font-weight: lighter; margin: 8px 0; height: auto; } '],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
   providers:[ SavingsStorageService]   
 })
 
-export class SavingsDashboard {
+export class SavingsDashboard {    
+  columnNames = {type: 'Type', amount: 'Amount', createdDate: 'Created Date', endDate: 'End Date'};
+  columnsToDisplay = ['type', 'amount', 'createdDate', 'endDate'];
+  expandedElement: Saving | null;
+  
   savings: Saving[] = [];
   saving: Saving = <Saving>{};      
-
-  selection = new SelectionModel<Saving>(true, []);
-  displayedColumns: string[] = ['select','name','type', 'amount', 'createdDate', 'endDate', 'documentPath'];
   dataSource = new MatTableDataSource(this.savings); 
   
-  constructor(private savingsService: SavingsStorageService, private plt: Platform, public navCtrl: NavController) {
-    
+  constructor(private savingsService: SavingsStorageService, private plt: Platform, public navCtrl: NavController) {    
    this.plt.ready().then(() => {      
       this.loadItems();
     });
@@ -29,20 +38,20 @@ export class SavingsDashboard {
   loadItems(){
     this.savingsService.getSavingsData().then(savingsData => {    
       if (savingsData != null)      
-      {        
+      {                
         this.savings = savingsData;                      
         this.dataSource = new MatTableDataSource(this.savings);
       }      
     });    
   } 
   
-  deleteDocuments(saving: Saving){         
-     this.savingsService.removeExpense(saving.id);
+  deleteSaving(saving: Saving){         
+     this.savingsService.removeSaving(saving.id);
      this.reload();   
   }
 
-  editDocumentData(document: Document){
-    //this.navCtrl.push(EditComponent, {document : this.document});
+  editSaving(saving: Saving){    
+    this.navCtrl.push(EditComponent, {savingsData : saving});
   }
 
   applyFilter(filterValue: string) {
@@ -59,8 +68,7 @@ export class SavingsDashboard {
     this.navCtrl.push(CreateComponent);
   }
 
-  viewSavingsDocument(document: Document){      
-    //this.navCtrl.push(DisplayComponent, {documentData : document});
+  viewSaving(saving: Saving){      
   }
 }
 

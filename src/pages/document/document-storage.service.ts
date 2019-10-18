@@ -15,7 +15,7 @@ export class DocumentStorageService {
   constructor(private storage: Storage){            
   }
 
-  public async getDocumentData(): Promise<Document[]>{      
+  public async getDocumentData(): Promise<Document[]>{         
     return await this.storage.get(Storage_Key);
   }
 
@@ -45,7 +45,8 @@ export class DocumentStorageService {
         if(result.id !== documentId){
           newItems.push(result);      
         }
-      }                   
+      }        
+      console.log(newItems);      
       this.storage.set(Storage_Key, newItems);
     });    
   }      

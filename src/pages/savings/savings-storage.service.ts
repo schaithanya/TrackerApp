@@ -9,10 +9,11 @@ export interface Saving{
   type : string,
   amount: number,
   createdDate: number,
-  endDate: number,
-  documentPath: string,
+  endDate: Date,
+  documentPath: any,
   comments: string
 }
+
 
 @Injectable()
 export class SavingsStorageService{
@@ -38,7 +39,7 @@ export class SavingsStorageService{
     });    
   }
 
-  public async removeExpense(savingId: string){
+  public async removeSaving(savingId: string){
     return this.getSavingsData().then((results: Saving[])  => {     
       if(!results || results.length == 0){
         return null;
@@ -55,7 +56,7 @@ export class SavingsStorageService{
     });
   }      
 
-  public async updateItem(saving: Saving)
+  public async updateSaving(saving: Saving)
   {
     return this.getSavingsData().then((results: Saving[]) => {
       if(!results || results.length == 0){

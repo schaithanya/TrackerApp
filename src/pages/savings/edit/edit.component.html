@@ -4,7 +4,7 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>  
-  <form (ngSubmit)="saveSavingsData()">     
+  <form (ngSubmit)="updateSavingData()">     
     <ion-item>
         <ion-label>Saving Name</ion-label>
         <ion-input type="text" [(ngModel)]="saving.name" name="name" required=""></ion-input>
@@ -36,9 +36,9 @@
       <ion-label>Comments</ion-label>
       <ion-input type="text" [(ngModel)]="saving.comments" name="Comments" required="" ></ion-input>
     </ion-item>      
-    <ion-item>                        
-        <input type='file' (change)="onSelectFile($event)">            
+    <ion-item>                       
+        <input type='file' accept="image/*" (change)="onSelectFile($event)" >            
       </ion-item>
-    <button ion-button type="submit">Save Data</button>
+    <button ion-button type="submit" >Save Data</button>
   </form>
 </ion-content>
