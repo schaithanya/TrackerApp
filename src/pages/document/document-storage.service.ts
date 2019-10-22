@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+import { File } from '@ionic-native/file/ngx';
 
 const Storage_Key = 'documents';
 
@@ -12,7 +14,8 @@ export interface Document{
 
 @Injectable()
 export class DocumentStorageService {
-  constructor(private storage: Storage){            
+  
+  constructor(private storage: Storage, private transfer: FileTransfer, private file: File){                
   }
 
   public async getDocumentData(): Promise<Document[]>{         
@@ -20,11 +23,14 @@ export class DocumentStorageService {
   }
 
   public addDocument(document: Document)
-  {     
+  { 
+    const fileTransfer: FileTransferObject = this.transfer.create();
     return this.getDocumentData().then((results: Document[]) => {
       if(results)
-      {         
+      {                 
         results.push(document);
+        alert(document.documentPath);
+        fileTransfer.download(document.documentPath,  this.file.externalDataDirectory + "TrackerApp" + "File.pdf");
         return this.storage.set(Storage_Key, results);
       }
       else

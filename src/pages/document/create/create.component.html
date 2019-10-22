@@ -22,7 +22,8 @@
         <ion-input type="text" [(ngModel)]="document.comments" name="Comments" required="" ></ion-input>
       </ion-item>               
       <ion-item>                        
-        <input type='file' (change)="onSelectFile($event)">            
+        <button ion-button (click)="onSelectFile()" type="button">Choose File</button>
+        <p>{{url}}</p>
       </ion-item>
     <button ion-button type="submit" >Save Data</button>
   </form>
