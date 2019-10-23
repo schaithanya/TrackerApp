@@ -6,8 +6,15 @@ const Storage_Key = 'expenses';
 export interface Expense{
   id: string,
   type : string,
-  amount: any,
-  createdDate: number
+  amount: number,
+  createdDate: string
+}
+
+export interface Filter{
+  type: string,
+  startDate: string,
+  endDate: string,
+  mode: string
 }
 
 @Injectable()

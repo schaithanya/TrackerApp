@@ -1,0 +1,47 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title> Filter Expense </ion-title>
+    </ion-navbar>
+  </ion-header>
+  <ion-content padding>  
+    <form (ngSubmit)="filterExpenses()">
+       <ion-item>      
+        <ion-label>Expense Type</ion-label>
+        <ion-select placeholder="Select" type="text" name="type" required="" [(ngModel)]="filter.type">
+          <ion-option value="Groceries">Groceries</ion-option>
+          <ion-option value="Food">Food</ion-option>
+          <ion-option value="Recharge">Recharge</ion-option>        
+          <ion-option value="Fuel">Fuel</ion-option>      
+        </ion-select>      
+      </ion-item>
+      <ion-item>
+          <ion-label>Expense Start Date</ion-label>
+           <ion-datetime displayFormat="MM/DD/YYYY" placeholder="Select Date" name="endDate" max="2099-12-31" pickerFormat="DD MM YYYY" [(ngModel)]="filter.startDate">
+        </ion-datetime>     
+      </ion-item>            
+      <ion-item>
+          <ion-label>Expense End Date</ion-label>
+          <ion-datetime displayFormat="MM/DD/YYYY" placeholder="Select Date" name="endDate" max="2099-12-31" pickerFormat="DD MM YYYY" [(ngModel)]="filter.endDate">
+          </ion-datetime>
+      </ion-item>      
+      <ion-item >           
+        <ion-buttons>
+          <button ion-button type="button" [color]="filter.mode == 'week' ? 'dark' : 'light'" (click)="changeMode('week')">
+            Week
+          </button>
+          <button ion-button type="button" [color]="filter.mode == 'month' ? 'dark' : 'light'" (click)="changeMode('month')">
+            Month
+            </button>
+          <button ion-button type="button" [color]="filter.mode == 'year' ? 'dark' : 'light'" (click)="changeMode('year')">        
+            Year
+          </button>     
+        </ion-buttons>        
+      </ion-item>      
+      <ion-item no-lines>
+        <ion-buttons>
+        <button ion-button type="submit">Apply Filter</button>
+        <button ion-button type="reset" (click)= "clearFilter()">Clear</button>
+        </ion-buttons>
+      </ion-item>
+    </form>
+  </ion-content>
