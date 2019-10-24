@@ -1,50 +1,71 @@
 import { Injectable } from "@angular/core";
-import { File } from "@ionic-native/file/ngx";
+import { File, FileEntry, IFile } from "@ionic-native/file/ngx";
 import { FileTransfer, FileTransferObject } from "@ionic-native/file-transfer/ngx";
 import { FileOpener } from "@ionic-native/file-opener/ngx";
 
+export interface FileInfo
+{
+  fileUrl: string,
+  fileName: string,
+  fileType: string
+}
+
 @Injectable()
 export class FileService{  
-  url: any;
-  fileTransfer: FileTransferObject;
-  storagePath: string = this.file.externalDataDirectory + "TrackerApp";
+  storagePath: string = this.file.externalDataDirectory + "/TrackerApp/";
   
   constructor(private fileOpener: FileOpener, private transfer: FileTransfer, private file: File) {     
   }
 
+  public SaveFile(fileInfo: FileInfo){
+    alert("Url" + fileInfo.fileUrl);
+    alert("fileName" + fileInfo.fileName);
+    alert('file Type' + fileInfo.fileType);
+    this.checkFileType(fileInfo.fileUrl);
+    let filePath: string = this.storagePath + fileInfo.fileName + ".pdf";
+    const fileTransfer: FileTransferObject = this.transfer.create();
+    fileTransfer.download(fileInfo.fileUrl, filePath).then((entry) => {
+      alert('download complete: ' + entry.toURL());
+      return entry.toURL();
+    }, (error) => {
+      alert('download failed!!');
+      return "";
+    });
+  }
+
+  checkFileType(url: string)
+  {
+    this.file.resolveLocalFilesystemUrl(url)
+      .then((entry: FileEntry) => {
+        return new Promise((resolve, reject) => {
+          entry.file(meta => resolve(meta), error => reject(error));
+        });
+      })
+      .then((meta: IFile) => {
+        alert('MimeType' + meta.type);
+      });
+  }
+  
+  getFileType(fileType: string){
+    if(fileType == 'pdf')
+    {
+      return '.pdf';
+    }
+    else if(fileType == 'png')
+    {
+      return '.png';
+    }
+    else if(fileType == 'jpeg')
+    {
+      return '.jpg';
+    }
+    else if(fileType == 'docx')
+    {
+      return '.docx'
+    }
+    
+  }
   public createAppDirectory() {  
     this.file.createDir(this.file.externalDataDirectory , 'TrackerApp', false);  
-  }
-
-  public createFile(file: any, fileName: any, fileExtension: any){    
-    if (file) {
-      let filesrc = this.getFileUrl(file);      
-      console.log(filesrc);
-      this.fileTransfer.download(filesrc, this.storagePath + fileName + fileExtension);
-    }              
-  }
-
-  public downloadFile(fileName: any, fileExtension: any){    
-    this.fileTransfer.download(this.storagePath + fileName, this.file.applicationStorageDirectory + '/Download/' + fileName + fileExtension);
-  }
-
-  public viewFile(fileName: any, fileExtension: any){
-    if(fileName){      
-      this.fileTransfer.download(this.storagePath, this.file.dataDirectory + fileName + fileExtension).then(entry => {        
-        this.fileOpener.open(this.storagePath + fileName + fileExtension, "application/pdf");        
-      })
-    }
-  }
-
-  public getFileUrl(file: any){        
-    if (file) {
-      var reader = new FileReader();
-      reader.readAsDataURL(file); // read file as data url
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        let target: any = event.target; 
-        this.url = target.result
-      }
-    }
-    return this.url;
   }
 }
