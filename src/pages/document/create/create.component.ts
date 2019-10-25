@@ -16,8 +16,6 @@ import { FileService } from '../../../utilities/file.service';
 })
 
 export class CreateComponent implements OnInit {     
-  url: any;
-  url2: any;
   fileInfo: FileInfo = <FileInfo>{};
 
   document: Document = <Document>{};
@@ -29,7 +27,9 @@ export class CreateComponent implements OnInit {
 
  private saveDocumentData(){       
     this.document.id = "Document" + Date.now();    
-    this.fileInfo.fileName = "Document" + Date.now();
+    this.document.type = this.fileInfo.fileType;
+    this.document.ext = this.fileInfo.fileExt;
+    this.fileInfo.fileName = this.document.documentName;
     this.documentService.addDocument(this.document, this.fileInfo).then(item => {      
     this.navCtrl.push(DocumentDashboard);
     });
@@ -37,6 +37,5 @@ export class CreateComponent implements OnInit {
   
   onSelectFile(){
     this.fileInfo = this.fileService.chooseFile();
-    this.url = this.fileInfo.fileUrl;
   }
 }

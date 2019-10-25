@@ -5,7 +5,7 @@ import { EditComponent } from '../document/edit/edit.component';
 import {SelectionModel} from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material';
 import { DocumentStorageService, Document} from '../document/document-storage.service';
-
+import { FileService } from '../../utilities/file.service';
 
 @Component({
   selector: 'DocumentDashboard',
@@ -24,11 +24,11 @@ export class DocumentDashboard {
   dataSource = new MatTableDataSource(this.documents); 
 
   
-  constructor(private documentService: DocumentStorageService, private plt: Platform, public navCtrl: NavController, private viewCtrl: ViewController) {
-    
-   this.plt.ready().then(() => {      
-      this.loadItems();
-    });
+  constructor(private documentService: DocumentStorageService, private plt: Platform, public navCtrl: NavController, private viewCtrl: ViewController,
+    private fileService: FileService) {    
+      this.plt.ready().then(() => {      
+        this.loadItems();
+      });
   }
 
   loadItems(){
@@ -66,6 +66,7 @@ export class DocumentDashboard {
   }
 
   viewDocument(document: Document){          
+    this.fileService.openFile(document.documentPath, document.type);
   }
 }
 

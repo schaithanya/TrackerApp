@@ -8,7 +8,8 @@ export interface Document{
   id: string,
   documentName: string,
   documentPath: any,
-  type: string 
+  type: string,
+  ext: string
 }
 
 @Injectable()
@@ -28,14 +29,12 @@ export class DocumentStorageService {
       { 
         let result = this.fileService.SaveFile(fileInfo);
         document.documentPath = result;                
-        alert(document.documentPath);
         results.push(document);
         return this.storage.set(Storage_Key, results);
       }
       else
       {        
         let result = this.fileService.SaveFile(fileInfo);
-        alert("Return Add" +result);
         document.documentPath = result;                
         return this.storage.set(Storage_Key, [document]);
       }

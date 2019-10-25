@@ -54,15 +54,20 @@ export class FileService{
   }
   public SaveFile(fileInfo: FileInfo){
     let filePath: string = this.storagePath + fileInfo.fileName + "." + fileInfo.fileExt;
-    alert("file Path" + filePath);
     const fileTransfer: FileTransferObject = this.transfer.create();
     fileTransfer.download(fileInfo.fileUrl, filePath).then((entry) => {
-      alert('download complete: ' + entry.toURL());
     }, (error) => {
       alert('download failed!!');
     });
 
     return filePath;
+  }
+
+  public openFile(filePath: string, fileType: string)
+  {
+    this.fileOpener.showOpenWithDialog(filePath, fileType)
+        .then(() => console.log('File is opened'))
+        .catch(e => console.log('Error opening file', e));
   }
 
   public createAppDirectory() {  
