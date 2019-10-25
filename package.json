@@ -46,6 +46,7 @@
     "core-js": "2.5.7",
     "ionic-angular": "^3.9.8",
     "ionicons": "^4.6.3",
+    "mime-types": "^2.1.24",
     "ng2-charts": "^1.6.0",
     "rxjs": "6.2.2",
     "rxjs-compat": "6.5.3",

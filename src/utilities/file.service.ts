@@ -1,71 +1,74 @@
 import { Injectable } from "@angular/core";
 import { File, FileEntry, IFile } from "@ionic-native/file/ngx";
+import { FileChooser } from '@ionic-native/file-chooser/ngx';
 import { FileTransfer, FileTransferObject } from "@ionic-native/file-transfer/ngx";
 import { FileOpener } from "@ionic-native/file-opener/ngx";
+var mime = require('mime-types');
 
 export interface FileInfo
 {
   fileUrl: string,
   fileName: string,
-  fileType: string
+  fileType: string,
+  fileExt: string
 }
 
 @Injectable()
 export class FileService{  
   storagePath: string = this.file.externalDataDirectory + "/TrackerApp/";
+  fileInfo: FileInfo = <FileInfo>{};
+  fileType: string;
+  fileType1: string;
+  fileType2: string;
+  fileType3: string;
+  fileType4: string;
+
   
-  constructor(private fileOpener: FileOpener, private transfer: FileTransfer, private file: File) {     
+  constructor(private fileOpener: FileOpener, private transfer: FileTransfer, private file: File, private fileChooser: FileChooser) {     
   }
 
+  public chooseFile() {
+    this.fileChooser.open().then(url =>
+    {
+      this.fileInfo.fileUrl = url;
+      this.file.resolveLocalFilesystemUrl(url).then(fileInfo =>
+      {
+          let files = fileInfo as FileEntry;
+          files.file(success =>
+            {
+              this.fileInfo.fileType  = success.type;
+              this.fileInfo.fileExt = mime.extension(success.type);
+            });
+      },err =>
+      {
+        console.log(err);
+            throw err;
+        });
+      },err =>
+      {
+          console.log(err);
+          throw err;
+      });
+
+    return this.fileInfo;
+  }
   public SaveFile(fileInfo: FileInfo){
-    alert("Url" + fileInfo.fileUrl);
-    alert("fileName" + fileInfo.fileName);
-    alert('file Type' + fileInfo.fileType);
-    this.checkFileType(fileInfo.fileUrl);
-    let filePath: string = this.storagePath + fileInfo.fileName + ".pdf";
+    let filePath: string = this.storagePath + fileInfo.fileName + "." + fileInfo.fileExt;
+    alert("file Path" + filePath);
     const fileTransfer: FileTransferObject = this.transfer.create();
     fileTransfer.download(fileInfo.fileUrl, filePath).then((entry) => {
       alert('download complete: ' + entry.toURL());
-      return entry.toURL();
     }, (error) => {
       alert('download failed!!');
-      return "";
     });
+
+    return filePath;
   }
 
-  checkFileType(url: string)
-  {
-    this.file.resolveLocalFilesystemUrl(url)
-      .then((entry: FileEntry) => {
-        return new Promise((resolve, reject) => {
-          entry.file(meta => resolve(meta), error => reject(error));
-        });
-      })
-      .then((meta: IFile) => {
-        alert('MimeType' + meta.type);
-      });
-  }
-  
-  getFileType(fileType: string){
-    if(fileType == 'pdf')
-    {
-      return '.pdf';
-    }
-    else if(fileType == 'png')
-    {
-      return '.png';
-    }
-    else if(fileType == 'jpeg')
-    {
-      return '.jpg';
-    }
-    else if(fileType == 'docx')
-    {
-      return '.docx'
-    }
-    
-  }
   public createAppDirectory() {  
     this.file.createDir(this.file.externalDataDirectory , 'TrackerApp', false);  
+    this.file.createDir(this.file.externalDataDirectory + '/TrackerApp', 'Documents', false);  
+    this.file.createDir(this.file.externalDataDirectory + '/TrackerApp', 'Savings', false);  
+    this.file.createDir(this.file.externalDataDirectory + '/TrackerApp', 'Posts', false);  
   }
 }

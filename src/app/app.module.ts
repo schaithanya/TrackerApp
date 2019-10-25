@@ -11,6 +11,7 @@ import { FileService } from '../utilities/file.service';
 import { File } from "@ionic-native/file/ngx";
 import { FileTransfer, FileTransferObject } from "@ionic-native/file-transfer/ngx";
 import { FileOpener } from "@ionic-native/file-opener/ngx";
+import { FileChooser } from '@ionic-native/file-chooser/ngx';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { FileOpener } from "@ionic-native/file-opener/ngx";
   entryComponents: [
     MyApp   
   ],
-  providers: [FileService, File, FileOpener, FileTransfer, FileTransferObject,
+  providers: [FileService, File, FileOpener, FileTransfer, FileTransferObject, FileChooser,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

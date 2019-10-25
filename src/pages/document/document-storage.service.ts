@@ -28,6 +28,7 @@ export class DocumentStorageService {
       { 
         let result = this.fileService.SaveFile(fileInfo);
         document.documentPath = result;                
+        alert(document.documentPath);
         results.push(document);
         return this.storage.set(Storage_Key, results);
       }

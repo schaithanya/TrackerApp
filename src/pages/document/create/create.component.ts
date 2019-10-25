@@ -7,12 +7,12 @@ import { FilePath } from '@ionic-native/file-path/ngx';
 import { FileChooser } from '@ionic-native/file-chooser/ngx';
 import { File } from "@ionic-native/file/ngx";
 import { FileTransfer, FileTransferObject } from "@ionic-native/file-transfer/ngx";
-
+import { FileService } from '../../../utilities/file.service';
 
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',    
-  providers:[ DocumentStorageService, FileChooser, FilePath, File, FileTransfer, FileTransferObject]   
+  providers:[ DocumentStorageService, FileChooser, FilePath, File, FileTransfer, FileTransferObject, FileService]   
 })
 
 export class CreateComponent implements OnInit {     
@@ -22,7 +22,7 @@ export class CreateComponent implements OnInit {
 
   document: Document = <Document>{};
   constructor(private documentService: DocumentStorageService, public navCtrl: NavController, public navParams: NavParams,private fileChooser: FileChooser, private filePath: FilePath,
-    private file: File, private transfer: FileTransfer) { }
+    private file: File, private transfer: FileTransfer, private fileService: FileService) { }
 
   ngOnInit() {
   }
@@ -30,15 +30,13 @@ export class CreateComponent implements OnInit {
  private saveDocumentData(){       
     this.document.id = "Document" + Date.now();    
     this.fileInfo.fileName = "Document" + Date.now();
-    this.fileInfo.fileUrl = this.url;
     this.documentService.addDocument(this.document, this.fileInfo).then(item => {      
     this.navCtrl.push(DocumentDashboard);
     });
   }    
   
   onSelectFile(){
-    this.fileChooser.open().then(url => {
-      this.url = url;
-    });
+    this.fileInfo = this.fileService.chooseFile();
+    this.url = this.fileInfo.fileUrl;
   }
 }
