@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>My Story</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="createPost()">
         <ion-icon name="add-circle"></ion-icon>
@@ -12,22 +12,35 @@
   </ion-toolbar>  
 </ion-header>
 
-<ion-content class="card-background-page">
-  <ion-card *ngFor = "let post of posts" color="light">   
-    <img src="{{getFileUrl(post.postPath)}}" />
-    <p>{{post.postTitle}}</p>    
-    <div class="card-subtitle">{{post.postComments}}</div>    
-    <ion-buttons end>
-      <button ion-button icon-only (click)="editPost(post)" >
-        <ion-icon name="create"> </ion-icon>
-      </button>
-       <button ion-button icon-only (click)="deletePost(post)">
-        <ion-icon name="trash"></ion-icon>
-      </button>
-       <button ion-button icon-only (click)="downloadPost()">
-        <ion-icon name="download"></ion-icon>
-      </button>
-    </ion-buttons>    
-  </ion-card>  
-
+<ion-content>  
+  <ion-card *ngFor = "let post of posts">
+    <ion-item class="card">
+      <ion-avatar item-start>
+        <ion-icon name="images"></ion-icon>
+      </ion-avatar>
+      <h2>{{post.postTitle}}</h2>
+      <p>{{getFormattedDate(post.postedDate)}}</p>
+    </ion-item>
+    <img src='getFileUrl(post.postPath)'/>
+    <ion-card-content>
+      <p>{{post.postComments}}</p>
+    </ion-card-content>
+    <ion-row>
+        <ion-buttons end>
+            <button ion-button icon-start clear small (click)="editPost(post)">
+              <ion-icon name="create"></ion-icon>
+              <div>Edit</div>
+            </button>
+            <button ion-button icon-start clear small icon-only (click)="deletePost(post)">
+                <ion-icon name="trash"></ion-icon>
+                <div>Delete</div>
+              </button>      
+              <button ion-button icon-start clear small icon-only (click)="downloadPost()">
+                  <ion-icon name="download"></ion-icon>
+                  <div>Download</div>
+                </button>              
+          </ion-buttons>
+    </ion-row>
+  </ion-card>
 </ion-content>
+  

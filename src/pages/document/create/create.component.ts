@@ -29,7 +29,7 @@ export class CreateComponent implements OnInit {
     this.document.id = "Document" + Date.now();    
     this.document.type = this.fileInfo.fileType;
     this.document.ext = this.fileInfo.fileExt;
-    this.fileInfo.fileName = this.document.documentName;
+    this.fileInfo.fileName = this.document.id;
     this.documentService.addDocument(this.document, this.fileInfo).then(item => {      
     this.navCtrl.push(DocumentDashboard);
     });

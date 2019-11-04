@@ -6,8 +6,8 @@
 <ion-content padding>  
   <form (ngSubmit)="savePostData()">.
     <ion-item>                
-        <img [src]="url" height="200"> <br/>
-        <input type='file' accept="image/*" (change)="onSelectFile($event)">            
+        <img [src]="getFileUrl(fileInfo.fileUrl)" height="200"> <br/>
+        <button ion-button (click)="onSelectFile()" type="button">Choose File</button>        
       </ion-item>
      <ion-item>
         <ion-label>Title</ion-label>

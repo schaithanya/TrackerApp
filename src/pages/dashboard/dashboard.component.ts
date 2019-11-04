@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ActionSheetController, Platform  } from 'ionic-angular';
+import { NavController, normalizeURL , Platform  } from 'ionic-angular';
 import { CreateComponent } from '../dashboard/create/create.component';
 import { EditComponent } from '../dashboard/edit/edit.component';
 import { DashboardStorageService, Post} from '../dashboard/dashboard-storage.service';
@@ -7,7 +7,7 @@ import { DashboardStorageService, Post} from '../dashboard/dashboard-storage.ser
 @Component({
   selector: 'dashboard.component',
   templateUrl: 'dashboard.component.html',
-  styles:['img{display: block; margin-left: auto; margin-right: auto; width: 20em; height: 20em;}'],
+  styles:['ion-avatar { background-color: AntiqueWhite; border-radius: 50%;  border: 2px solid; top: 0;  left: 0;  width: 46px;  height: 46px; z-index: 9; box-sizing: border-box; display: flex; align-items: center; justify-content: center; } .icobutton{ width: 5em }'], 
   providers:[DashboardStorageService]
 })
 export class DashboardComponent {
@@ -26,7 +26,7 @@ export class DashboardComponent {
     this.dashboardService.getPostData().then(posts => {    
       if (posts != null)      
       {                        
-        this.posts = posts;                              
+        this.posts = posts;      
       }      
     });    
   } 
@@ -44,6 +44,11 @@ export class DashboardComponent {
   downloadPost(){
 
   }
+  
+  getFileUrl(filePath){
+    let imagePath = normalizeURL(filePath);    
+    return imagePath;
+  }
 
   reload() {    
     let active = this.navCtrl.getActive(); 
@@ -55,55 +60,8 @@ export class DashboardComponent {
     this.navCtrl.push(CreateComponent);
   }  
 
-   getFileUrl(file: File) {        
-    if (file) {
-      var reader = new FileReader();
-      reader.readAsDataURL(file); // read file as data url
-      reader.onload = (event) => { // called once readAsDataURL is complete      
-        let target: any = event.target; 
-        this.postUrl = target.result
-      }
-    }
-    return this.postUrl;
+  getFormattedDate(date: string){
+    var dateValue = new Date(date);
+    return dateValue.toDateString();
   }
-
-// async createActions() {
-//     const actionSheet = await this.actionSheetController.create({
-//       header: 'Albums',
-//       buttons: [{
-//         text: 'Delete',
-//         role: 'destructive',
-//         icon: 'trash',
-//         handler: () => {
-//           console.log('Delete clicked');
-//         }
-//       }, {
-//         text: 'Share',
-//         icon: 'share',
-//         handler: () => {
-//           console.log('Share clicked');
-//         }
-//       }, {
-//         text: 'Play (open modal)',
-//         icon: 'arrow-dropright-circle',
-//         handler: () => {
-//           console.log('Play clicked');
-//         }
-//       }, {
-//         text: 'Favorite',
-//         icon: 'heart',
-//         handler: () => {
-//           console.log('Favorite clicked');
-//         }
-//       }, {
-//         text: 'Cancel',
-//         icon: 'close',
-//         role: 'cancel',
-//         handler: () => {
-//           console.log('Cancel clicked');
-//         }
-//       }]
-//     });
-//     await actionSheet.present();  
-//   }
 }
