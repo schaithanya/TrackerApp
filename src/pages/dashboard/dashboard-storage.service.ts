@@ -28,14 +28,14 @@ constructor(private storage: Storage, private fileService: FileService){
     return this.getPostData().then((results: Post[]) => {
     if(results)
     {          
-      let result = this.fileService.SaveFile(fileInfo);
+      let result = this.fileService.saveFile(fileInfo);
       post.postPath = result;                
       results.push(post);      
       return this.storage.set(Storage_Key, results);
     }
     else
     {              
-      let result = this.fileService.SaveFile(fileInfo);
+      let result = this.fileService.saveFile(fileInfo);
       post.postPath = result;                
       return this.storage.set(Storage_Key, [post]);
     }

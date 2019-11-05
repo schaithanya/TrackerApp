@@ -20,7 +20,7 @@ export class DocumentDashboard {
   url: any;
 
   selection = new SelectionModel<Document>(true, []);
-  displayedColumns: string[] = ['select','documentName','type', 'documentPath'];
+  displayedColumns: string[] = ['select','documentName','type', 'documentPath','download'];
   dataSource = new MatTableDataSource(this.documents); 
 
   
@@ -42,7 +42,7 @@ export class DocumentDashboard {
   } 
   
   deleteDocuments(document: Document){             
-     this.documentService.removeDocumentData(document.id);     
+     this.documentService.removeDocumentData(document);     
      this.reload();   
   }
 
@@ -67,6 +67,10 @@ export class DocumentDashboard {
 
   viewDocument(document: Document){          
     this.fileService.openFile(document.documentPath, document.type);
+  }
+
+  downloadDocument(document: Document){    
+    this.fileService.downloadFile(document.id);    
   }
 }
 

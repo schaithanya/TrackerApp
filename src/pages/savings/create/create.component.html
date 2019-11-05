@@ -1,44 +1,50 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title> Savings Details </ion-title>
-  </ion-navbar>
-</ion-header>
-<ion-content padding>  
-  <form (ngSubmit)="saveSavingsData()">     
-    <ion-item>
-        <ion-label>Saving Name</ion-label>
-        <ion-input type="text" [(ngModel)]="saving.name" name="name" required=""></ion-input>
-    </ion-item>        
-    <ion-item>  
-      <ion-label>Saving Type</ion-label>
-      <ion-select placeholder="Select" [(ngModel)]="saving.type" type="text" name="type" required="">
-        <ion-option value="FD">FD</ion-option>
-        <ion-option value="Insurance">Insurance</ion-option>
-        <ion-option value="MF">MF</ion-option>        
-        <ion-option value="PPF">PPF</ion-option>        
-      </ion-select>      
-    </ion-item>
-    <ion-item>
-        <ion-label>Amount</ion-label>
-        <ion-input type="number" [(ngModel)]="saving.amount" name="amount" required=""  ></ion-input>
-    </ion-item> 
-   <ion-item>
-      <ion-label>Start Date</ion-label>      
-      <ion-datetime displayFormat="MM/DD/YYYY" placeholder="Select Date" [(ngModel)]="saving.createdDate" name="createdDate" max="2099-12-31">
-      </ion-datetime>     
-    </ion-item> 
-    <ion-item>
-      <ion-label>End Date</ion-label>      
-      <ion-datetime displayFormat="MM/DD/YYYY" placeholder="Select Date" [(ngModel)]="saving.endDate" name="endDate" max="2099-12-31">
-      </ion-datetime>     
-    </ion-item> 
-    <ion-item>
-      <ion-label>Comments</ion-label>
-      <ion-input type="text" [(ngModel)]="saving.comments" name="Comments" required="" ></ion-input>
-    </ion-item>      
-    <ion-item>                        
-        <input type='file' (change)="onSelectFile($event)">            
+    <ion-navbar>
+      <ion-title> Savings Details </ion-title>
+    </ion-navbar>
+  </ion-header>
+  <ion-content padding>  
+    <form (ngSubmit)="saveSavingsData()">     
+      <ion-item>
+          <ion-label>Saving Name</ion-label>
+          <ion-input type="text" [(ngModel)]="saving.name" name="name" required=""></ion-input>
+      </ion-item>        
+      <ion-item>  
+        <ion-label>Saving Type</ion-label>
+        <ion-select placeholder="Select" [(ngModel)]="saving.type" type="text" name="type" required="">
+          <ion-option value="FD">FD</ion-option>
+          <ion-option value="Insurance">Insurance</ion-option>
+          <ion-option value="MF">MF</ion-option>        
+          <ion-option value="PPF">PPF</ion-option>        
+        </ion-select>      
       </ion-item>
-    <button ion-button type="submit">Save Data</button>
-  </form>
-</ion-content>
+      <ion-item>
+          <ion-label>Amount</ion-label>
+          <ion-input type="number" [(ngModel)]="saving.amount" name="amount" required=""  ></ion-input>
+      </ion-item> 
+     <ion-item>
+        <ion-label>Start Date</ion-label>      
+        <ion-datetime displayFormat="MM/DD/YYYY" placeholder="Select Date" [(ngModel)]="saving.createdDate" name="createdDate" max="2099-12-31">
+        </ion-datetime>     
+      </ion-item> 
+      <ion-item>
+        <ion-label>End Date</ion-label>      
+        <ion-datetime displayFormat="MM/DD/YYYY" placeholder="Select Date" [(ngModel)]="saving.endDate" name="endDate" max="2099-12-31">
+        </ion-datetime>     
+      </ion-item> 
+       <ion-item>
+        <ion-label>Reminder Date</ion-label>      
+        <ion-datetime displayFormat="MM/DD/YYYY" placeholder="Select Date" [(ngModel)]="saving.endDate" name="reminderDate" max="2099-12-31">
+        </ion-datetime>     
+      </ion-item> 
+      <ion-item>
+        <ion-label>Comments</ion-label>
+        <ion-input type="text" [(ngModel)]="saving.comments" name="Comments" required="" ></ion-input>
+      </ion-item>  
+       <ion-item>                        
+          <button ion-button (click)="onSelectFile()" type="button">Choose File</button>
+          <p>{{fileInfo.fileUrl}}</p>
+        </ion-item>        
+      <button ion-button type="submit">Save Data</button>
+    </form>
+  </ion-content>

@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { Platform, NavController } from 'ionic-angular';
+import { Platform, NavController, ViewController } from 'ionic-angular';
 import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import {SelectionModel} from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material';
 import { SavingsStorageService, Saving} from './savings-storage.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import { FileService } from '../../utilities/file.service';
 
 @Component({  
   templateUrl: 'savings.dashboard.component.html',
@@ -29,7 +30,7 @@ export class SavingsDashboard {
   saving: Saving = <Saving>{};      
   dataSource = new MatTableDataSource(this.savings); 
   
-  constructor(private savingsService: SavingsStorageService, private plt: Platform, public navCtrl: NavController) {    
+  constructor(private savingsService: SavingsStorageService, private plt: Platform, public navCtrl: NavController, private fileService: FileService, private viewController: ViewController) {    
    this.plt.ready().then(() => {      
       this.loadItems();
     });
@@ -46,13 +47,13 @@ export class SavingsDashboard {
   } 
   
   deleteSaving(saving: Saving){         
-     this.savingsService.removeSaving(saving.id);
-     this.reload();   
+     this.savingsService.removeSaving(saving);  
+     this.navCtrl.setRoot(this.navCtrl.getActiveChildNav().component )
   }
 
   editSaving(saving: Saving){    
     this.navCtrl.push(EditComponent, {savingsData : saving});
-  }
+  } 
 
   applyFilter(filterValue: string) {
      this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -68,7 +69,12 @@ export class SavingsDashboard {
     this.navCtrl.push(CreateComponent);
   }
 
-  viewSaving(saving: Saving){      
+  viewSaving(saving: Saving){    
+    this.fileService.openFile(saving.documentPath, saving.documentType);  
+  }
+
+  downloadSaving(saving: Saving){    
+    this.fileService.downloadFile(saving.id);  
   }
 }
 

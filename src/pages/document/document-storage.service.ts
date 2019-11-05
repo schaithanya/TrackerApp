@@ -27,43 +27,48 @@ export class DocumentStorageService {
     return this.getDocumentData().then((results: Document[]) => {
       if(results)
       { 
-        let result = this.fileService.SaveFile(fileInfo);
+        let result = this.fileService.saveFile(fileInfo);
         document.documentPath = result;                
         results.push(document);
         return this.storage.set(Storage_Key, results);
       }
       else
       {        
-        let result = this.fileService.SaveFile(fileInfo);
+        let result = this.fileService.saveFile(fileInfo);
         document.documentPath = result;                
         return this.storage.set(Storage_Key, [document]);
       }
     });    
   }
 
-  public async removeDocumentData(documentId: string){
+  public async removeDocumentData(document: Document){
     return this.getDocumentData().then((results: Document[])  => {        
       if(!results || results.length == 0){
         return null;
       }
 
+      this.fileService.removeFile(document.id);
       let newItems: Document[] = [];      
       for(let result of results){
-        if(result.id !== documentId){
+        if(result.id !== document.id){
           newItems.push(result);      
         }
-      }        
-      console.log(newItems);      
+      }                       
       this.storage.set(Storage_Key, newItems);
     });    
   }      
 
-  public async updateDocumentData(document: Document)
+  public async updateDocumentData(document: Document, fileInfo: FileInfo)
   {
     return this.getDocumentData().then((results: Document[]) => {
       if(!results || results.length == 0){
         return null;
       }
+
+      // Remove and create new file 
+      this.fileService.removeFile(document.id);
+      let result = this.fileService.saveFile(fileInfo);
+      document.documentPath = result;
 
       let newItems: Document[] = [];
 
