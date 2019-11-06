@@ -5,9 +5,13 @@
 </ion-header>
 <ion-content padding>  
   <form (ngSubmit)="savePostData()">.
-    <ion-item>                
-        <img [src]="getFileUrl(fileInfo.fileUrl)" height="200"> <br/>
-        <button ion-button (click)="onSelectFile()" type="button">Choose File</button>        
+    <ion-item>                      
+        <img src="{{myPhoto}}" height="200"> <br/>
+        <img src="{{myImage}}" height="200"> <br/>
+        <button type="button" ion-button icon-start clear small icon-only (click)="presentActionSheet()">
+            <ion-icon name="download"></ion-icon>
+            <div>Select Image</div>
+        </button> 
       </ion-item>
      <ion-item>
         <ion-label>Title</ion-label>

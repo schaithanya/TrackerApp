@@ -13,6 +13,7 @@ import { FileTransfer, FileTransferObject } from "@ionic-native/file-transfer/ng
 import { FileOpener } from "@ionic-native/file-opener/ngx";
 import { FileChooser } from '@ionic-native/file-chooser/ngx';
 import { DateService } from '../utilities/date.service';
+import { Camera } from '@ionic-native/camera/ngx';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { DateService } from '../utilities/date.service';
     MyApp   
   ],
   providers: [FileService, File, FileOpener, FileTransfer, FileTransferObject, FileChooser, DateService,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
