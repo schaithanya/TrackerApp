@@ -16,13 +16,7 @@ export interface FileInfo
 @Injectable()
 export class FileService{  
   storagePath: string = this.file.externalDataDirectory + "/TrackerApp/";
-  fileInfo: FileInfo = <FileInfo>{};
-  fileType: string;
-  fileType1: string;
-  fileType2: string;
-  fileType3: string;
-  fileType4: string;
-
+  fileInfo: FileInfo = <FileInfo>{}; 
   
   constructor(private fileOpener: FileOpener, private transfer: FileTransfer, private file: File, private fileChooser: FileChooser) {     
   }
@@ -78,6 +72,19 @@ export class FileService{
   
   public removeFile(fileName: string){
     this.file.removeFile(this.storagePath, fileName);
+  }
+
+  public copyFile(sourcePath: any, sourceFileName: any)
+  {
+    this.file.copyFile(sourcePath, sourceFileName, this.storagePath, sourceFileName);
+  }
+
+  public saveImageFile(tempImage:any)
+  {
+    const tempFileName = tempImage.substr(tempImage.lastIndexOf('/') + 1);
+    const tempBaseFilesystemPath = tempImage.substr(0, tempImage.lastIndexOf('/') + 1);
+
+    this.copyFile(tempBaseFilesystemPath, tempFileName)    
   }
 
   public createAppDirectory() {  

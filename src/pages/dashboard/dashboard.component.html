@@ -21,7 +21,7 @@
       <h2>{{post.postTitle}}</h2>
       <p>{{getFormattedDate(post.postedDate)}}</p>
     </ion-item>
-    <img src='getFileUrl(post.postPath)'/>
+    <img src='{{post.imageDisplay}}'/>
     <ion-card-content>
       <p>{{post.postComments}}</p>
     </ion-card-content>

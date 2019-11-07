@@ -33,7 +33,7 @@ import { Camera } from '@ionic-native/camera/ngx';
     MyApp   
   ],
   providers: [FileService, File, FileOpener, FileTransfer, FileTransferObject, FileChooser, DateService,
-    Camera,
+    Camera, 
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

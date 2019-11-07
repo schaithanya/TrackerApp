@@ -13,14 +13,12 @@ export class EditComponent implements OnInit {
   postUrl: any;   
 
   constructor(private dashboardService: DashboardStorageService, public navCtrl: NavController, public navParams: NavParams) {    
-    this.getFileUrl(this.post.postPath);
    }
 
   ngOnInit() {
   }  
   
   onSelectFile(event) {    
-    this.post.postPath = event.target.files[0];    
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]); // read file as data url
