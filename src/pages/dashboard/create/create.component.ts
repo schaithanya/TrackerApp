@@ -76,7 +76,7 @@ export class CreateComponent implements OnInit {
         handler: () => {
           const options: CameraOptions = {
             quality: 100,
-            destinationType: this.camera.DestinationType.DATA_URL,
+            destinationType: this.camera.DestinationType.FILE_URI,
             sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
             saveToPhotoAlbum: false,
             encodingType: this.camera.EncodingType.JPEG,
