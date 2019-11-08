@@ -4,10 +4,9 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>  
-  <form (ngSubmit)="savePostData()">.
+  <form (ngSubmit)="updatePost()">.
     <ion-item>                
-        <img src="{{getFileUrl(post.postPath)}}" height="200"> <br/>
-        <input type='file' accept="image/*" (change)="onSelectFile($event)">            
+        <img src="{{post.imageDisplay}}" height="200"> <br/>
       </ion-item>
      <ion-item>
         <ion-label>Title</ion-label>
