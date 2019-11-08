@@ -6,6 +6,7 @@ import { DashboardModule } from '../pages/dashboard/dashboard.module';
 import { ExpenseModule } from '../pages/expense/expense.module';
 import { DocumentModule } from '../pages/document/document.module';
 import { SavingsModule } from '../pages/savings/savings.module';
+import { PlannerModule } from '../pages/planner/planner.module';
 import { IonicStorageModule } from '@ionic/storage';
 import { FileService } from '../utilities/file.service';
 import { File } from "@ionic-native/file/ngx";
@@ -25,6 +26,7 @@ import { Camera } from '@ionic-native/camera/ngx';
     ExpenseModule,
     DocumentModule,
     SavingsModule,
+    PlannerModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()   
   ],

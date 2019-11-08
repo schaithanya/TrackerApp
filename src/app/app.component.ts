@@ -4,6 +4,7 @@ import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 import { ExpenseDashboard } from '../pages/expense/expense.dashboard.component';
 import { DocumentDashboard } from '../pages/document/document.dashboard.component';
 import { SavingsDashboard } from '../pages/savings/savings.dashboard.component';
+import { PlannerDashboard } from '../pages/planner/planner.dashboard.component';
 import { FileService } from '../utilities/file.service';
 
 @Component({
@@ -25,8 +26,8 @@ export class MyApp {
       { title: 'My Story', component: DashboardComponent }, 
       { title: 'Document Tracker', component: DocumentDashboard } ,  
       { title: 'Expense Tracker', component: ExpenseDashboard },
-      {title: 'Savings Tracker', component: SavingsDashboard} 
-    
+      {title: 'Savings Tracker', component: SavingsDashboard},
+      {title: 'My Scheduler', component: PlannerDashboard}     
     ];
 
   }
