@@ -1,51 +1,34 @@
 <ion-header>
 	<ion-navbar color="primary">
-		<ion-buttons start>
-			<button ion-button icon-only (click)="cancel()">
-        <ion-icon name="close"></ion-icon>
-      </button>
-		</ion-buttons>
-		<ion-title>Event Details</ion-title>
+	  <ion-title> Create Event </ion-title>
 	</ion-navbar>
-</ion-header>
-
-<ion-content>
-	<ion-list padding>
+  </ion-header>
+  <ion-content padding>   
+	<form (ngSubmit)="createEvent()">
+		<ion-item>       
+		<ion-label>Event Type</ion-label>
+		  <ion-select placeholder="Select" [(ngModel)]="event.eventType" type="text" name="type" required="">
+			<ion-option value="Daily">Daily Activity</ion-option>
+			<ion-option value="Event">Event</ion-option>        
+		  </ion-select>      
+		</ion-item>      
 		<ion-item>
-			<ion-input type="text" placeholder="Title" [(ngModel)]="event.title"></ion-input>
-		</ion-item>
-
+		  <ion-label>Title</ion-label>
+		  <ion-input type="text" [(ngModel)]="event.eventTitle" name="eventTitle" required="" ></ion-input>
+		</ion-item>       
+	   <ion-item>
+		  <ion-label>Notes</ion-label>
+		  <ion-input type="text" [(ngModel)]="event.eventNotes" name="eventNotes" required="" ></ion-input>
+		</ion-item>  
 		<ion-item>
-			<ion-textarea placeholder="Notes" [(ngModel)]="event.notes" rows="3"></ion-textarea>
-		</ion-item>
-
-    <ion-item>
-			<ion-textarea placeholder="Place" [(ngModel)]="event.place" rows="3"></ion-textarea>
-		</ion-item>
-
+		  <ion-label>Place</ion-label>
+		  <ion-input type="text" [(ngModel)]="event.eventPlace" name="eventPlace" required="" ></ion-input>
+		</ion-item>  
 		<ion-item>
-			<ion-label>Start</ion-label>
-			<ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MMM D:HH:mm" [(ngModel)]="event.startTime" [min]="minDate"></ion-datetime>
-		</ion-item>
-
-		<ion-item>
-			<ion-label>End</ion-label>
-			<ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MMM D:HH:mm" [(ngModel)]="event.endTime" [min]="minDate"></ion-datetime>
-		</ion-item>
-
-		<ion-item>
-			<ion-label>Block Day</ion-label>
-			<ion-checkbox [(ngModel)]="event.blockDay" (ionChange)="blockDay($event.value)"></ion-checkbox>
-		</ion-item>
-
-		<ion-item>
-			<ion-label>All Day?</ion-label>
-			<ion-checkbox [(ngModel)]="event.allDay" [disabled]="event.blockDay"></ion-checkbox>
-		</ion-item>
-		<button ion-button block icon-left (click)="save()">
-    <ion-icon name="checkmark"></ion-icon> Add Event
-  </button>
-	</ion-list>
-
-
-</ion-content>
+		<ion-label>Event Date</ion-label>      
+		<ion-datetime displayFormat="MM/DD/YYYY" placeholder="Select Date" [(ngModel)]="event.eventDate" name="createdDate" max="2099-12-31">
+		</ion-datetime>     
+	  </ion-item>
+		<button ion-button type="submit" block>Submit</button>
+	  </form>
+  </ion-content>

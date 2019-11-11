@@ -1,45 +1,28 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController } from 'ionic-angular';
-import moment from 'moment'
-import { of } from "rxjs/observable/of";
+import { Component, OnInit } from '@angular/core';
+import{ IonicPage, NavController, NavParams } from 'ionic-angular';
+import { PlannerService, Event} from '../../planner/planner-storage.service';
+import { PlannerDashboard } from '../../planner/planner.dashboard.component';
+import { DateService } from '../../../utilities/date.service';
 
 @Component({
-  templateUrl: 'create.component.html',
+  selector: 'app-create',
+  templateUrl: './create.component.html',
+  providers:[PlannerService, DateService]     
 })
-export class CreateComponent {
+export class CreateComponent implements OnInit {  
+  event: Event = <Event>{};
+  constructor(public navCtrl: NavController, public navParams: NavParams, private plannerService: PlannerService, private dateService: DateService) { }
 
-  event = {
-    startTime: new Date().toISOString(),
-    endTime: new Date().toISOString(),
-    allDay: false,
-    room : {}
-  };
-  minDate = new Date().toISOString();
-  rooms$ = of([{ id: "room1", name: "room1" }, { id: "room2", name: "room2" }, { id: "room3", name: "room3" }])
+  ngOnInit() {
+  } 
 
-  constructor(
-    public navCtrl: NavController,
-    private navParams: NavParams,
-    public viewCtrl: ViewController) {
-    let preselectedDate = moment(this.navParams.get('selectedDay')).format();
-    this.event.startTime = preselectedDate;
-    this.event.endTime = preselectedDate;
-  }
+  createEvent(){
+    this.event.createdDate = this.dateService.getTodaysDate(); 
+    this.event.id = "Event" + Date.now();
 
-  cancel() {
-    this.viewCtrl.dismiss();
-  }
-
-  save() {
-    this.viewCtrl.dismiss(this.event);
-  }
-
-  blockDay($event) {
-    console.log($event)
-  }
-
-  optionSelected($event) {
-    console.log($event)
-    this.event.room = $event
-  }
+    this.plannerService.addEvent(this.event).then(item => {
+      this.event = <Event>{};
+      this.navCtrl.push(PlannerDashboard);
+    });    
+  }  
 }

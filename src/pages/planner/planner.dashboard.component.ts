@@ -1,16 +1,23 @@
-import { Component } from '@angular/core';
-import { NavController, ActionSheetController, ModalController } from 'ionic-angular';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Platform, NavController, ActionSheetController, NavParams } from 'ionic-angular';
 import { CreateComponent } from './create/create.component';
+import { PlannerService, Event} from '../planner/planner-storage.service';
+import {DateService} from '../../utilities/date.service';
 
 @Component({
-  templateUrl: 'planner.dashboard.component.html'
+  templateUrl: 'planner.dashboard.component.html',
+  styles: ['custom-calendar{height: auto !important; } ion-col{padding:0px;}'],
+  providers: [ PlannerService, DateService ]
 })
-export class PlannerDashboard {
+export class PlannerDashboard {  
+  dailyEvents: Event[] = [];
+  events: Event[] = [];
   selectedDay = new Date()
   selectedObject
   eventSource = []
   viewTitle;
   isToday: boolean;
+  currDate = new Date();
   calendarModes = [
     { key: 'month', value: 'Month' },
     { key: 'week', value: 'Week' },
@@ -19,15 +26,24 @@ export class PlannerDashboard {
   calendar = {
     mode: this.calendarModes[0].key,
     currentDate: new Date()
-  }; // these are the variable used by the calendar.
-  constructor(public navCtrl: NavController,
-    private actionSheetCtrl: ActionSheetController,
-    private modalCtrl: ModalController) {
+  }; 
+  
+  constructor(public navCtrl: NavController, private actionSheetCtrl: ActionSheetController, private plannerService: PlannerService, private plt: Platform, private navParams: NavParams, private dateService: DateService) {
+    this.plt.ready().then(() => {     
+      this.loadEvents();
+    });
   }
 
   loadEvents() {
-    //this.eventSource = this.createRandomEvents();
+    this.plannerService.getEvents().then(events => {                
+      if(events != null)
+      {        
+        this.dailyEvents = events.filter((item: Event) => (item.eventType != null && item.eventType == "Daily" ) && (this.currDate == null  || (this.dateService.getDateInFormat(this.currDate) == item.eventDate.toString())));        
+        this.events = events.filter((item: Event) => (item.eventType != null && item.eventType == "Event" ) &&(this.currDate == null  || (this.dateService.getDateInFormat(this.currDate) == item.eventDate.toString())));     
+      }        
+    });
   }
+
   onViewTitleChanged(title) {
     this.viewTitle = title;
   }
@@ -41,10 +57,7 @@ export class PlannerDashboard {
     this.calendar.currentDate = new Date();
   }
   onTimeSelected(ev) {
-    console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
-      (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
-    this.selectedObject = ev
-    // this.openActionSheet(ev)
+    this.currDate = new Date(ev.SelectedTime);    
   }
   onCurrentDateChanged(event: Date) {
     var today = new Date();
@@ -52,7 +65,7 @@ export class PlannerDashboard {
     event.setHours(0, 0, 0, 0);
     this.isToday = today.getTime() === event.getTime();
 
-    this.selectedDay = event
+    this.selectedDay = event;   
 
   }
 
@@ -110,23 +123,7 @@ export class PlannerDashboard {
   }
 
   addEvent() {
-    let modal = this.modalCtrl.create(CreateComponent, { selectedDay: this.selectedDay });
-    modal.present();
-    modal.onDidDismiss(data => {
-      if (data) {
-        let eventData = data;
-
-        eventData.startTime = new Date(data.startTime);
-        eventData.endTime = new Date(data.endTime);
-
-        let events = this.eventSource;
-        events.push(eventData);
-        this.eventSource = [];
-        setTimeout(() => {
-          this.eventSource = events;
-        });
-      }
-    });
+    this.navCtrl.push(CreateComponent);    
   }
 
   onOptionSelected($event: any) {

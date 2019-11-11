@@ -44,4 +44,28 @@ public getTodaysDate(){
 
     return [start, end];
   }
+
+  public getDateInFormat(date: Date){    
+    var dd = date.getDate();
+    var mm = date.getMonth() + 1; //January is 0!
+
+    var yyyy = date.getFullYear();
+    var fmtDay = '';
+    var fmtMonth = '';
+    if (dd < 10) {
+    fmtDay = '0' + dd;
+    } 
+    else
+    {
+      fmtDay = dd.toString();
+    }
+    if (mm < 10) {
+      fmtMonth = '0' + mm;
+    } 
+    else{
+      fmtMonth = mm.toString(); 
+    }
+
+    return yyyy + '-' + mm + '-' + dd;
+  }
 }
