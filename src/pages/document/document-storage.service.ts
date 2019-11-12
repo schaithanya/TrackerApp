@@ -7,6 +7,7 @@ const Storage_Key = 'documents';
 export interface Document{
   id: string,
   documentName: string,
+  category: string,
   documentPath: any,
   type: string,
   ext: string
