@@ -12,7 +12,7 @@ const Storage_Key = 'savings';
 
 @Component({  
   templateUrl: 'savings.dashboard.component.html',
-  styles: ['table { width: 100%; margin-left: auto; margin-right: auto; } tr.example-detail-row { height: 0; }tr.example-element-row:not(.example-expanded-row):hover { background: #777; }tr.example-element-row:not(.example-expanded-row):active { background: #efefef; }.example-element-row td { border-bottom-width: 0; } .example-element-detail {  overflow: hidden; display: flex; } .example-element-diagram { width: 100%;  border: 2px solid black; padding: 8px; font-weight: lighter; margin: 8px 0; height: auto; } '],
+  styles: ['table { width: 100%; margin-left: auto; margin-right: auto; overflow:auto; height:200px;} tr.example-detail-row { height: 0; }tr.example-element-row:not(.example-expanded-row):hover { background: #777; }tr.example-element-row:not(.example-expanded-row):active { background: #efefef; }.example-element-row td { border-bottom-width: 0; } .example-element-detail {  overflow: hidden; display: flex; } .example-element-diagram { width: 100%;  border: 2px solid black; padding: 8px; font-weight: lighter; margin: 8px 0; height: auto; } '],
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({height: '0px', minHeight: '0'})),
