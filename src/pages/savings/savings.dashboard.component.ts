@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
-import { Platform, NavController, ViewController } from 'ionic-angular';
+import { Platform, NavController } from 'ionic-angular';
 import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
-import {SelectionModel} from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material';
 import { SavingsStorageService, Saving} from './savings-storage.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { FileService } from '../../utilities/file.service';
+import { Storage } from '@ionic/storage';
+
+const Storage_Key = 'savings';
 
 @Component({  
   templateUrl: 'savings.dashboard.component.html',
@@ -23,14 +25,16 @@ import { FileService } from '../../utilities/file.service';
 
 export class SavingsDashboard {    
   columnNames = {type: 'Type', amount: 'Amount', createdDate: 'Created Date', endDate: 'End Date'};
-  columnsToDisplay = ['type', 'amount', 'createdDate', 'endDate'];
+  columnsToDisplay = ['type', 'amount', 'endDate'];
   expandedElement: Saving | null;
   
   savings: Saving[] = [];
   saving: Saving = <Saving>{};      
   dataSource = new MatTableDataSource(this.savings); 
   
-  constructor(private savingsService: SavingsStorageService, private plt: Platform, public navCtrl: NavController, private fileService: FileService, private viewController: ViewController) {    
+  constructor(private savingsService: SavingsStorageService, private plt: Platform, 
+    public navCtrl: NavController, private fileService: FileService,
+    private storage: Storage) {    
    this.plt.ready().then(() => {      
       this.loadItems();
     });
@@ -46,9 +50,20 @@ export class SavingsDashboard {
     });    
   } 
   
-  deleteSaving(saving: Saving){         
-     this.savingsService.removeSaving(saving);  
-     this.navCtrl.setRoot(this.navCtrl.getActiveChildNav().component )
+  deleteSaving(saving: Saving){
+    this.storage.get(Storage_Key).then(results => {
+        this.fileService.removeFile(saving.id);
+        let resultValues = [];
+          for(let result of results){
+            if(result.id !== saving.id){
+              resultValues.push(result);
+          }
+        }
+        
+        this.storage.set(Storage_Key, resultValues);
+        this.savings = resultValues;
+        this.dataSource = new MatTableDataSource(this.savings);
+    })
   }
 
   editSaving(saving: Saving){    

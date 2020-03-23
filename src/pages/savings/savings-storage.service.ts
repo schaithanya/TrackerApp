@@ -46,25 +46,7 @@ export class SavingsStorageService{
       }
     });    
   }
-
-  public async removeSaving(saving: Saving){
-    return this.getSavingsData().then((results: Saving[])  => {     
-      if(!results || results.length == 0){
-        return null;
-      }
-
-      this.fileService.removeFile(saving.id);
-      let newItems: Saving[] = [];
-      for(let result of results){
-        if(result.id !== saving.id){
-          newItems.push(result);
-        }
-      }
-
-      return this.storage.set(Storage_Key, newItems);   
-    });
-  }      
-
+  
   public async updateSaving(saving: Saving, fileInfo: FileInfo)
   {
     return this.getSavingsData().then((results: Saving[]) => {
