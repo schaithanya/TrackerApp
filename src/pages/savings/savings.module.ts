@@ -4,15 +4,14 @@ import { CommonModule } from '@angular/common';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
+import { SavingsResult} from './helpers/savings-result/savings-result.component';
 import { MaterialModule } from '../../app/material.module';
 import {MatNativeDateModule} from '@angular/material/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
-  declarations: [SavingsDashboard, CreateComponent, EditComponent],
+  declarations: [SavingsDashboard, CreateComponent, EditComponent, SavingsResult ],
   imports: [
     CommonModule,
     IonicModule,
@@ -21,8 +20,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     BrowserAnimationsModule,
     ReactiveFormsModule    
   ],
-  exports:[ SavingsDashboard, CreateComponent, EditComponent ],
-  entryComponents:[ SavingsDashboard, CreateComponent, EditComponent ] 
+  exports:[ SavingsDashboard, CreateComponent, EditComponent, SavingsResult ],
+  entryComponents:[ SavingsDashboard, CreateComponent, EditComponent, SavingsResult ] 
 })
 
 export class SavingsModule{  
