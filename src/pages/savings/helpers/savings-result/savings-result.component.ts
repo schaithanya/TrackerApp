@@ -12,7 +12,7 @@ export interface SavingResult
 @Component({  
   selector:'savings-results',
   templateUrl: 'savings-result.component.html',
-  styles: ['* {box-sizing:border-box} /* Next & previous buttons */ .prev, .next { cursor: pointer; position: absolute;top: 50%;width: auto;margin-top: -32px; padding-left: 0px; padding-top: 0px; padding-right: 16px; padding-bottom: 16px; color: rgb(72, 138, 255);font-weight: bold;font-size: 30px;transition: 0.6s ease;border-radius: 0 3px 3px 0; }  /* Position the "next button" to the right */ .next { right: 0; border-radius: 3px 0 0 3px; } .circle { width: 100px; height: 100px; border-radius: 50%; font-size: 8px !important; color: #fff; background-color: rgb(72, 138, 255); margin-right: 1.8rem; } .active, .dot:hover { background-color: #717171; } .circle-text{line-height: 100px !important;} .bold{font-weight: bold !important} .text-align-left{text-align:left; padding-right: 10px}']
+  styles: ['* {box-sizing:border-box} /* Next & previous buttons */ .prev, .next { cursor: pointer; position: absolute;top: 50%;width: auto;margin-top: -32px; padding-left: 0px; padding-top: 0px; padding-right: 16px; padding-bottom: 16px; color: rgb(72, 138, 255);font-weight: bold;font-size: 30px;transition: 0.6s ease;border-radius: 0 3px 3px 0; }  /* Position the "next button" to the right */ .next { right: 0; border-radius: 3px 0 0 3px; }  .active, .dot:hover { background-color: #717171; } .bold{font-weight: bold !important} .text-align-left{text-align:left; padding-right: 10px}']
 })
 
 export class SavingsResult {    

@@ -1,9 +1,9 @@
 <!-- Slideshow container -->
-    <table style="margin: 0 auto; text-align:center;">
+    <table style="margin: 0 auto; text-align:center; border: 1px solid black;">
+      <tr style="border: 1px solid black;">
+        <td colspan="2"><h1 class="bold">{{saving.SavingName}}</h1></td>
+    </tr>
       <tr>
-        <td>
-            <div class="circle"><h2 class="circle-text bold">{{saving.SavingName}}</h2></div>
-        </td>
         <td class="text-align-left">  
          <h2 class="bold">Amount</h2>
          <h2 class="bold">Mat Amt</h2>
@@ -21,8 +21,3 @@
     <a class="prev" (click)="prevSlide(slideIndex)">&#10094;</a>
     <a class="next" (click)="nextSlide(slideIndex)">&#10095;</a> 
   <br>
-  <!-- <div style="text-align:center">
-    <span class="dot" *ngFor="let sav of savings" (click)="currentSlide(sav.Index)"></span>
-  </div> -->
-  <!-- The dots/circles -->
-  

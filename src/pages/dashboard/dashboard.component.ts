@@ -3,6 +3,9 @@ import { NavController, normalizeURL , Platform  } from 'ionic-angular';
 import { CreateComponent } from '../dashboard/create/create.component';
 import { EditComponent } from '../dashboard/edit/edit.component';
 import { DashboardStorageService, Post} from '../dashboard/dashboard-storage.service';
+import { FileService, FileInfo } from '../../utilities/file.service';
+import { Storage } from '@ionic/storage';
+const Storage_Key = 'posts';
 
 @Component({
   selector: 'dashboard.component',
@@ -15,7 +18,8 @@ export class DashboardComponent {
   post: Post = <Post>{}; 
   postUrl: any;     
   
-  constructor(private dashboardService: DashboardStorageService, private plt: Platform, public navCtrl: NavController) {
+  constructor(private dashboardService: DashboardStorageService, private plt: Platform,
+              public navCtrl: NavController, private storage: Storage, private fileService: FileService) {
     
    this.plt.ready().then(() => {      
       this.loadItems();
@@ -26,14 +30,25 @@ export class DashboardComponent {
     this.dashboardService.getPostData().then(posts => {    
       if (posts != null)      
       {                        
-        this.posts = posts;      
+        this.posts = posts.reverse();      
       }      
     });    
   } 
   
   deletePost(post: Post){         
-     this.dashboardService.removePostData(post.id);
-     this.reload();   
+      this.storage.get(Storage_Key).then(results => {
+          this.fileService.removeFile(post.id);
+          let resultValues = [];
+            for(let result of results){
+              if(result.id !== post.id){
+                resultValues.push(result);
+          }
+        }
+          
+        this.storage.set(Storage_Key, resultValues);
+        this.posts = resultValues;
+        this.reload(); 
+    });
   }
 
   editPost(post: Post){
