@@ -15,6 +15,7 @@ export class CreateComponent implements OnInit {
   url = '';
   fileType: any;
   fileInfo: FileInfo = <FileInfo>{};
+  moduleName = "Savings";
 
   saving: Saving = <Saving>{};
   constructor(private savingsService: SavingsStorageService, private navCtrl: NavController, public navParams: NavParams, private localNotifications: LocalNotifications, private fileService: FileService) { }
@@ -27,6 +28,7 @@ export class CreateComponent implements OnInit {
     this.saving.documentType = this.fileInfo.fileType;
     this.saving.documentExt = this.fileInfo.fileExt;
     this.fileInfo.fileName = this.saving.id;
+    this.fileInfo.moduleName = this.moduleName;
         
     this.savingsService.addSavingsData(this.saving, this.fileInfo).then(item => {      
       this.localNotifications.schedule({

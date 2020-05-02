@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import{ IonicPage, NavController, NavParams } from 'ionic-angular';
+import{ NavController, NavParams } from 'ionic-angular';
 import {ExpenseStorageService, Expense} from '../../expense/expense-storage.service';
 import { ExpenseDashboard } from '../../expense/expense.dashboard.component';
 import { DateService } from '../../../utilities/date.service';

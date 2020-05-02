@@ -10,14 +10,16 @@ export interface FileInfo
   fileUrl: string,
   fileName: string,
   fileType: string,
-  fileExt: string
+  fileExt: string,
+  moduleName: string
 }
 
 @Injectable()
 export class FileService{  
   storagePath: string = this.file.externalDataDirectory + "/TrackerApp/";
   fileInfo: FileInfo = <FileInfo>{}; 
-  
+  moduleFolderName: string;
+
   constructor(private fileOpener: FileOpener, private transfer: FileTransfer, private file: File, private fileChooser: FileChooser) {     
   }
 
@@ -47,7 +49,8 @@ export class FileService{
     return this.fileInfo;
   }
   public saveFile(fileInfo: FileInfo){
-    let filePath: string = this.storagePath + fileInfo.fileName + "." + fileInfo.fileExt;
+    this.getFolder(fileInfo.moduleName);
+    let filePath: string = this.storagePath + this.moduleFolderName + fileInfo.fileName + "." + fileInfo.fileExt;
     const fileTransfer: FileTransferObject = this.transfer.create();
     fileTransfer.download(fileInfo.fileUrl, filePath).then((entry) => {
     }, (error) => {
@@ -93,4 +96,21 @@ export class FileService{
     this.file.createDir(this.file.externalDataDirectory + '/TrackerApp', 'Savings', false);  
     this.file.createDir(this.file.externalDataDirectory + '/TrackerApp', 'Posts', false);  
   }
+
+  getFolder(moduleName : any)
+  {
+    if(moduleName == "Savings")
+    {
+      this.moduleFolderName = "Savings/";
+    }
+    else if(moduleName == "Documents")
+    {
+      this.moduleFolderName = "Documents/";
+    }  
+    else if(moduleName == "Posts")
+    {
+      this.moduleFolderName = "Posts/";
+    }
+  }
+
 }

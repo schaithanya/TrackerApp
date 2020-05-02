@@ -6,6 +6,9 @@ import {SelectionModel} from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material';
 import { DocumentStorageService, Document} from '../document/document-storage.service';
 import { FileService } from '../../utilities/file.service';
+import { Storage } from '@ionic/storage';
+
+const Storage_Key = 'documents';
 
 @Component({
   selector: 'DocumentDashboard',
@@ -20,11 +23,11 @@ export class DocumentDashboard {
   url: any;
 
   selection = new SelectionModel<Document>(true, []);
-  displayedColumns: string[] = ['select','documentName','category', 'documentPath','download'];
+  displayedColumns: string[] = ['documentName','category', 'documentPath','download', 'select'];
   dataSource = new MatTableDataSource(this.documents); 
   
   constructor(private documentService: DocumentStorageService, private plt: Platform, public navCtrl: NavController, private viewCtrl: ViewController,
-    private fileService: FileService) {    
+    private fileService: FileService, private storage: Storage) {    
       this.plt.ready().then(() => {      
         this.loadItems();
       });
@@ -40,11 +43,22 @@ export class DocumentDashboard {
     });    
   } 
   
-  deleteDocuments(document: Document){             
-     this.documentService.removeDocumentData(document);     
-     this.reload();   
-  }
-
+  deleteDocuments(document: Document){         
+    this.storage.get(Storage_Key).then(results => {
+      this.fileService.removeFile(document.id);
+      let resultValues = [];
+        for(let result of results){
+          if(result.id !== document.id){
+            resultValues.push(result);
+        }
+      }
+      
+      this.storage.set(Storage_Key, resultValues);
+      this.documents = resultValues;
+      this.dataSource = new MatTableDataSource(this.documents); 
+  });
+}    
+     
   editDocumentData(document: Document){
     this.document = document;
     this.navCtrl.push(EditComponent, {document : this.document});
@@ -55,7 +69,7 @@ export class DocumentDashboard {
   }  
   
   reload() {   
-    let active = this.navCtrl.getActive();       
+    let active = this.navCtrl.getActive(); 
     this.navCtrl.remove(active.index);
     this.navCtrl.push(active.component);    
   }

@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import {ExpenseStorageService, Expense, Filter} from '../../expense/expense-storage.service';
-import{ IonicPage, NavController, NavParams } from 'ionic-angular';
+import{ NavController, NavParams } from 'ionic-angular';
 import { ExpenseDashboard } from '../../expense/expense.dashboard.component';
 
 @Component({

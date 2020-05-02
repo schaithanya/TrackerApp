@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef  } from '@angular/core';
-import{ IonicPage, NavController, NavParams } from 'ionic-angular';
+import{ NavController, NavParams } from 'ionic-angular';
 import { DocumentStorageService, Document} from '../../document/document-storage.service';
 import {DocumentDashboard} from '../../document/document.dashboard.component';
 import {FileInfo} from '../../../utilities/file.service';
@@ -17,7 +17,7 @@ import { FileService } from '../../../utilities/file.service';
 
 export class CreateComponent implements OnInit {     
   fileInfo: FileInfo = <FileInfo>{};
-
+  folderName: string = "Documents";
   document: Document = <Document>{};
   constructor(private documentService: DocumentStorageService, public navCtrl: NavController, public navParams: NavParams,private fileChooser: FileChooser, private filePath: FilePath,
     private file: File, private transfer: FileTransfer, private fileService: FileService) { }
@@ -30,6 +30,7 @@ export class CreateComponent implements OnInit {
     this.document.type = this.fileInfo.fileType;
     this.document.ext = this.fileInfo.fileExt;
     this.fileInfo.fileName = this.document.id;
+    this.fileInfo.moduleName = this.folderName;
     this.documentService.addDocument(this.document, this.fileInfo).then(item => {      
     this.navCtrl.push(DocumentDashboard);
     });
