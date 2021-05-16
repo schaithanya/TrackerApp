@@ -9,15 +9,19 @@ export interface Saving{
   name: string,
   type : string,
   amount: number,
+  matAmount:number,
   createdDate: number,
   endDate: Date,
   reminderDate: Date,
   documentPath: any,
   documentType: string,
   documentExt: string,
-  comments: string  
+  comments: string,
+  interest: number  
 }
-
+export interface Filter{
+  type: string
+}
 
 @Injectable()
 export class SavingsStorageService{

@@ -14,7 +14,7 @@ export class MyApp {
   
   @ViewChild(Nav) nav: Nav;
  
-  rootPage: any = DashboardComponent;
+  rootPage: any = SavingsDashboard;
 
   pages: Array<{title: string, component: any}>;
 
@@ -23,10 +23,10 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'My Story', component: DashboardComponent }, 
+      {title: 'Savings Tracker', component: SavingsDashboard},
       { title: 'Document Tracker', component: DocumentDashboard } ,  
       { title: 'Expense Tracker', component: ExpenseDashboard },
-      {title: 'Savings Tracker', component: SavingsDashboard},
+      { title: 'My Story', component: DashboardComponent }, 
       {title: 'My Scheduler', component: PlannerDashboard}     
     ];
 

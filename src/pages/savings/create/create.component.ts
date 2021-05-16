@@ -29,6 +29,7 @@ export class CreateComponent implements OnInit {
     this.saving.documentExt = this.fileInfo.fileExt;
     this.fileInfo.fileName = this.saving.id;
     this.fileInfo.moduleName = this.moduleName;
+    this.saving.interest = +this.saving.matAmount - +this.saving.amount;
         
     this.savingsService.addSavingsData(this.saving, this.fileInfo).then(item => {      
       this.localNotifications.schedule({

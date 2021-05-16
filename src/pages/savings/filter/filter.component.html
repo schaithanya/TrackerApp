@@ -1,0 +1,24 @@
+<ion-header>
+    <ion-navbar color="primary"> 
+      <ion-title> Filter Savings </ion-title>
+    </ion-navbar>
+  </ion-header>
+  <ion-content padding>  
+    <form (ngSubmit)="filterSavings()">
+       <ion-item>      
+        <ion-label>Filter Type</ion-label>
+        <ion-select placeholder="Select" type="text" name="type" required="" [(ngModel)]="filter.type">
+          <ion-option value="FD">FD</ion-option>
+          <ion-option value="PPF">PPF</ion-option>
+          <ion-option value="Insurance">Insurance</ion-option>        
+          <ion-option value="MF">MF</ion-option>      
+        </ion-select>      
+      </ion-item>
+      <ion-item no-lines>
+        <ion-buttons>
+        <button ion-button type="submit">Apply Filter</button>
+        <button ion-button type="reset" (click)= "clearFilter()">Clear</button>
+        </ion-buttons>
+      </ion-item>
+    </form>
+  </ion-content>

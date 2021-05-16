@@ -52,7 +52,7 @@ export class ExpenseDashboard {
         }
 
         this.getExpenseDisplayItems(this.expenses);
-      }
+      } 
     });
   }   
 
