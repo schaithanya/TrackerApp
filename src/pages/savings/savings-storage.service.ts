@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { TrustedHtmlString } from '@angular/core/src/sanitization/bypass';
 import { Storage } from '@ionic/storage';
 import { FileService, FileInfo } from '../../utilities/file.service';
 
@@ -17,10 +18,11 @@ export interface Saving{
   documentType: string,
   documentExt: string,
   comments: string,
-  interest: number  
+  interest: string  
 }
 export interface Filter{
-  type: string
+  type: string,
+  name: string
 }
 
 @Injectable()

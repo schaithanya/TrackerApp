@@ -14,6 +14,10 @@
           <ion-option value="MF">MF</ion-option>      
         </ion-select>      
       </ion-item>
+      <ion-item>
+        <ion-label>Saving Name</ion-label>
+        <ion-input type="text" [(ngModel)]="filter.name" name="name" required=""></ion-input>
+      </ion-item>
       <ion-item no-lines>
         <ion-buttons>
         <button ion-button type="submit">Apply Filter</button>

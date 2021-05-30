@@ -41,7 +41,7 @@ export class EditComponent implements OnInit {
       this.fileInfo.fileName = this.saving.id;
     }
 
-    this.saving.interest = +this.saving.matAmount - +this.saving.amount;
+    this.saving.interest = (+this.saving.matAmount - +this.saving.amount).toFixed(2);
 
     this.savingService.updateSaving(this.saving, this.fileInfo).then(item => {
       this.navCtrl.push(SavingsDashboard);

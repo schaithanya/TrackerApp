@@ -54,7 +54,8 @@ export class SavingsDashboard {
         this.savings = savingsData;
         if (Object.keys(this.filter).length != 0) {
           this.savings = this.savings.filter((item: Saving) =>
-            (this.filter.type == null || item.type == this.filter.type));
+            ((this.filter.type == null || item.type == this.filter.type) 
+              && (this.filter.name == null || item.name == this.filter.name)));
         }
 
         let currentYear: number = new Date().getFullYear();
@@ -82,6 +83,9 @@ export class SavingsDashboard {
 
       this.storage.set(Storage_Key, resultValues);
       this.savings = resultValues;
+
+      let initialSort: Sort = { active: 'endDate', direction: 'asc' };
+      this.sortData(initialSort);
       //this.dataSource = new MatTableDataSource(this.savings);
     })
   }
@@ -128,7 +132,7 @@ export class SavingsDashboard {
         default: return compare(a.type, b.type, isAsc);
       }
     });
-
+    // Always sort based on end date
     this.sortedData = this.sortedData.sort((x, y) => +new Date(x.endDate) - +new Date(y.endDate));
     this.dataSource = new MatTableDataSource(this.sortedData);
   }
