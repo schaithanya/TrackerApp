@@ -6,6 +6,7 @@ import { DocumentDashboard } from '../pages/document/document.dashboard.componen
 import { SavingsDashboard } from '../pages/savings/savings.dashboard.component';
 import { PlannerDashboard } from '../pages/planner/planner.dashboard.component';
 import { FileService } from '../utilities/file.service';
+import { PassphraseDashboard } from '../pages/passphrase/passphrase.dashboard.component';
 
 @Component({
   templateUrl: 'app.html'
@@ -25,6 +26,7 @@ export class MyApp {
     this.pages = [
       {title: 'Savings Tracker', component: SavingsDashboard},
       { title: 'Document Tracker', component: DocumentDashboard } ,  
+      { title: 'Passphrase Tracker', component: PassphraseDashboard } ,  
       { title: 'Expense Tracker', component: ExpenseDashboard },
       { title: 'My Story', component: DashboardComponent }, 
       {title: 'My Scheduler', component: PlannerDashboard}     

@@ -15,6 +15,7 @@ import { FileOpener } from "@ionic-native/file-opener/ngx";
 import { FileChooser } from '@ionic-native/file-chooser/ngx';
 import { DateService } from '../utilities/date.service';
 import { Camera } from '@ionic-native/camera/ngx';
+import { PassphraseModule } from '../pages/passphrase/passphrase.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { Camera } from '@ionic-native/camera/ngx';
     DocumentModule,
     SavingsModule,
     PlannerModule,
+    PassphraseModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()   
   ],

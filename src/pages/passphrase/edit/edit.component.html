@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title> Passphrase Edit </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <form (ngSubmit)="updateDocumentData()">
+    <ion-item>
+      <ion-label>Passphrase Name</ion-label>
+      <ion-input type="text" [(ngModel)]="passphrase.passphraseName" name="passphraseName" required=""></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Passphrase Text</ion-label>
+      <ion-input type="text" [(ngModel)]="passphrase.passphraseText" name="passphraseText" required=""></ion-input>
+    </ion-item>
+    <button ion-button type="submit">Save Data</button>
+  </form>
+</ion-content>
