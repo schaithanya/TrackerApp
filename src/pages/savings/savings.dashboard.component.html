@@ -22,9 +22,9 @@
   <ion-item>
     <savings-results [savings]="savings"></savings-results>
   </ion-item>
-  <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8"  matSort (matSortChange)="sortData($event)">
     <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
-      <th mat-header-cell *matHeaderCellDef> {{columnNames[column]}} </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{columnNames[column]}} </th>
       <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
     </ng-container>
     <ng-container matColumnDef="expandedDetail">
