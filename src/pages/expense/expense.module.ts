@@ -9,8 +9,6 @@ import { CreateComponent } from './create/create.component';
 import { DisplayComponent } from './display/display.component';
 import { FilterComponent } from './filter/filter.component';
 
-const Storage_Key = 'expenses';
-
 @NgModule({
   declarations: [ExpenseDashboard, CreateComponent, DisplayComponent, FilterComponent],
   imports: [

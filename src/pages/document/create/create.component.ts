@@ -18,22 +18,11 @@ export class CreateComponent implements OnInit {
   fileInfo: FileInfo = <FileInfo>{};
   folderName: string = "Documents";
   document: Document = <Document>{};
-  constructor(private documentService: DocumentStorageService, public navCtrl: NavController, public navParams: NavParams, private fileChooser: FileChooser, private filePath: FilePath,
-    private file: File, private transfer: FileTransfer, private fileService: FileService) { }
+  constructor(private documentService: DocumentStorageService, public navCtrl: NavController, public navParams: NavParams, private fileService: FileService) { }
 
   ngOnInit() {
   }
 
-  private saveDocumentData() {
-    this.document.id = "Document" + Date.now();
-    this.document.type = this.fileInfo.fileType;
-    this.document.ext = this.fileInfo.fileExt;
-    this.fileInfo.fileName = this.document.id;
-    this.fileInfo.moduleName = this.folderName;
-    this.documentService.addDocument(this.document, this.fileInfo).then(item => {
-      this.navCtrl.push(DocumentDashboard);
-    });
-  }
 
   onSelectFile() {
     this.fileInfo = this.fileService.chooseFile();

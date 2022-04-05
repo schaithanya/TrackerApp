@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DashboardStorageService, Post } from '../../dashboard/dashboard-storage.service';
-import { DashboardComponent } from '../../dashboard/dashboard.component';
 
 @Component({
   selector: 'app-edit',
@@ -12,7 +11,7 @@ export class EditComponent implements OnInit {
   post: Post = this.navParams.get('post');
   postUrl: any;
 
-  constructor(private dashboardService: DashboardStorageService, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ngOnInit() {

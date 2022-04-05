@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, normalizeURL , Platform  } from 'ionic-angular';
-import { CreateComponent } from '../dashboard/create/create.component';
-import { EditComponent } from '../dashboard/edit/edit.component';
-import { DashboardStorageService, Post} from '../dashboard/dashboard-storage.service';
-import { FileService, FileInfo } from '../../utilities/file.service';
 import { Storage } from '@ionic/storage';
+import { NavController, normalizeURL, Platform } from 'ionic-angular';
+import { FileService } from '../../utilities/file.service';
+import { CreateComponent } from '../dashboard/create/create.component';
+import { DashboardStorageService, Post } from '../dashboard/dashboard-storage.service';
+import { EditComponent } from '../dashboard/edit/edit.component';
 const Storage_Key = 'posts';
 
 @Component({
