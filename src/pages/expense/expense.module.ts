@@ -1,23 +1,23 @@
-import { NgModule} from '@angular/core';
-import { ExpenseDashboard } from '../expense/expense.dashboard.component';
 import { CommonModule } from '@angular/common';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { CreateComponent } from './create/create.component';
-import { FilterComponent } from './filter/filter.component';
+import { NgModule } from '@angular/core';
+import { MatNativeDateModule } from '@angular/material/core';
+import { IonicModule } from 'ionic-angular';
 import { ChartsModule } from 'ng2-charts';
-import { DisplayComponent } from './display/display.component';
 import { MaterialModule } from '../../app/material.module';
-import {MatNativeDateModule} from '@angular/material/core';
+import { ExpenseDashboard } from '../expense/expense.dashboard.component';
+import { CreateComponent } from './create/create.component';
+import { DisplayComponent } from './display/display.component';
+import { FilterComponent } from './filter/filter.component';
 
 const Storage_Key = 'expenses';
 
 @NgModule({
-declarations: [ExpenseDashboard, CreateComponent, DisplayComponent, FilterComponent],
- imports: [
+  declarations: [ExpenseDashboard, CreateComponent, DisplayComponent, FilterComponent],
+  imports: [
     CommonModule,
     IonicModule,
     ChartsModule,
-    MaterialModule,    
+    MaterialModule,
     MatNativeDateModule,
   ],
   exports: [
@@ -26,7 +26,7 @@ declarations: [ExpenseDashboard, CreateComponent, DisplayComponent, FilterCompon
     DisplayComponent,
     FilterComponent
   ],
-entryComponents: [
+  entryComponents: [
     ExpenseDashboard,
     CreateComponent,
     DisplayComponent,
@@ -34,5 +34,5 @@ entryComponents: [
   ]
 })
 
-export class ExpenseModule{    
+export class ExpenseModule {
 }

@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
-import { Platform, NavController, ViewController } from 'ionic-angular';
 import { SelectionModel } from '@angular/cdk/collections';
+import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { Storage } from '@ionic/storage';
-import { PassphraseStorageService, Passphrase } from './passphrase-storage.service';
-import { EditComponent } from './edit/edit.component';
+import { NavController, Platform } from 'ionic-angular';
 import { CreateComponent } from './create/create.component';
+import { EditComponent } from './edit/edit.component';
+import { Passphrase, PassphraseStorageService } from './passphrase-storage.service';
 
 const Storage_Key = 'passphrase';
 
@@ -22,7 +22,7 @@ export class PassphraseDashboard {
   url: any;
 
   selection = new SelectionModel<Passphrase>(true, []);
-  displayedColumns: string[] = ['passphraseTitle','passphraseName', 'passphraseText', 'editPassPhrase','select'];
+  displayedColumns: string[] = ['passphraseTitle', 'passphraseName', 'passphraseText', 'editPassPhrase', 'select'];
   dataSource = new MatTableDataSource(this.passphrases);
 
   constructor(private passphraseService: PassphraseStorageService, private plt: Platform, public navCtrl: NavController, private storage: Storage) {
@@ -41,7 +41,7 @@ export class PassphraseDashboard {
   }
 
   deletePassphrase(passphrase: Passphrase) {
-    this.storage.get(Storage_Key).then(results => {     
+    this.storage.get(Storage_Key).then(results => {
       let resultValues = [];
       for (let result of results) {
         if (result.id !== passphrase.id) {
@@ -74,7 +74,7 @@ export class PassphraseDashboard {
     this.navCtrl.push(CreateComponent);
   }
 
-  viewPassphrase(passPhrase: Passphrase) {    
-  }  
+  viewPassphrase(passPhrase: Passphrase) {
+  }
 }
 

@@ -13,7 +13,7 @@ export class FilterComponent {
   filteredExpenses: Expense[] = [];
   pickerFormat: string = "DD MM YYYY";
 
-  constructor(private expenseService: ExpenseStorageService, private navCtrl: NavController, private navParams: NavParams) {
+  constructor(private navCtrl: NavController, private navParams: NavParams) {
     if (this.navParams.get("filterData")) {
       this.filter = <Filter>this.navParams.get("filterData");
     }

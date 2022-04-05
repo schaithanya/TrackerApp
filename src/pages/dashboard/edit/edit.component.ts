@@ -40,10 +40,4 @@ export class EditComponent implements OnInit {
     }
     return this.postUrl;
   }
-
-  private updatePost() {
-    this.dashboardService.updatePostData(this.post).then(item => {
-      this.navCtrl.push(DashboardComponent);
-    });
-  }
 }

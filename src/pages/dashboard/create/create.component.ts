@@ -22,8 +22,7 @@ export class CreateComponent implements OnInit {
 
   post: Post = <Post>{};
   constructor(private dashboardService: DashboardStorageService, public navCtrl: NavController, public navParams: NavParams,
-    private dateService: DateService, private fileService: FileService, public actionSheetController: ActionSheetController, private cameraService: CameraService,
-    private webView: WebView, private camera: Camera, private sanitizer: DomSanitizer) {
+    private dateService: DateService, private fileService: FileService, public actionSheetController: ActionSheetController, private webView: WebView, private camera: Camera) {
     this.fileInfo.fileUrl = '';
   }
 

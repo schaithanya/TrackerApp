@@ -1,28 +1,28 @@
-import { NgModule } from '@angular/core';
-import { PlannerDashboard } from '../planner/planner.dashboard.component';
 import { CommonModule } from '@angular/common';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { CreateComponent } from './create/create.component';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { IonicModule } from 'ionic-angular';
+import { NgCalendarModule } from 'ionic2-calendar';
 import { MaterialModule } from '../../app/material.module';
-import {MatNativeDateModule} from '@angular/material/core';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { NgCalendarModule  } from 'ionic2-calendar';
+import { PlannerDashboard } from '../planner/planner.dashboard.component';
+import { CreateComponent } from './create/create.component';
 
 @NgModule({
   declarations: [PlannerDashboard, CreateComponent],
   imports: [
     CommonModule,
     IonicModule,
-    MaterialModule,    
+    MaterialModule,
     MatNativeDateModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    NgCalendarModule    
+    NgCalendarModule
   ],
-  exports:[ PlannerDashboard, CreateComponent ],
-  entryComponents:[ PlannerDashboard, CreateComponent ] 
+  exports: [PlannerDashboard, CreateComponent],
+  entryComponents: [PlannerDashboard, CreateComponent]
 })
 
-export class PlannerModule{  
+export class PlannerModule {
 }

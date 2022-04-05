@@ -1,15 +1,15 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { Platform, NavController, ActionSheetController, NavParams } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { ActionSheetController, NavController, NavParams, Platform } from 'ionic-angular';
+import { DateService } from '../../utilities/date.service';
+import { Event, PlannerService } from '../planner/planner-storage.service';
 import { CreateComponent } from './create/create.component';
-import { PlannerService, Event} from '../planner/planner-storage.service';
-import {DateService} from '../../utilities/date.service';
 
 @Component({
   templateUrl: 'planner.dashboard.component.html',
   styles: ['custom-calendar{height: auto !important; } ion-col{padding:0px;}'],
-  providers: [ PlannerService, DateService ]
+  providers: [PlannerService, DateService]
 })
-export class PlannerDashboard {  
+export class PlannerDashboard {
   dailyEvents: Event[] = [];
   events: Event[] = [];
   selectedDay = new Date()
@@ -26,21 +26,20 @@ export class PlannerDashboard {
   calendar = {
     mode: this.calendarModes[0].key,
     currentDate: new Date()
-  }; 
-  
+  };
+
   constructor(public navCtrl: NavController, private actionSheetCtrl: ActionSheetController, private plannerService: PlannerService, private plt: Platform, private navParams: NavParams, private dateService: DateService) {
-    this.plt.ready().then(() => {     
+    this.plt.ready().then(() => {
       this.loadEvents();
     });
   }
 
   loadEvents() {
-    this.plannerService.getEvents().then(events => {                
-      if(events != null)
-      {        
-        this.dailyEvents = events.filter((item: Event) => (item.eventType != null && item.eventType == "Daily" ) && (this.currDate == null  || (this.dateService.getDateInFormat(this.currDate) == item.eventDate.toString())));        
-        this.events = events.filter((item: Event) => (item.eventType != null && item.eventType == "Event" ) &&(this.currDate == null  || (this.dateService.getDateInFormat(this.currDate) == item.eventDate.toString())));     
-      }        
+    this.plannerService.getEvents().then(events => {
+      if (events != null) {
+        this.dailyEvents = events.filter((item: Event) => (item.eventType != null && item.eventType == "Daily") && (this.currDate == null || (this.dateService.getDateInFormat(this.currDate) == item.eventDate.toString())));
+        this.events = events.filter((item: Event) => (item.eventType != null && item.eventType == "Event") && (this.currDate == null || (this.dateService.getDateInFormat(this.currDate) == item.eventDate.toString())));
+      }
     });
   }
 
@@ -57,7 +56,7 @@ export class PlannerDashboard {
     this.calendar.currentDate = new Date();
   }
   onTimeSelected(ev) {
-    this.currDate = new Date(ev.SelectedTime);    
+    this.currDate = new Date(ev.SelectedTime);
   }
   onCurrentDateChanged(event: Date) {
     var today = new Date();
@@ -65,7 +64,7 @@ export class PlannerDashboard {
     event.setHours(0, 0, 0, 0);
     this.isToday = today.getTime() === event.getTime();
 
-    this.selectedDay = event;   
+    this.selectedDay = event;
 
   }
 
@@ -123,7 +122,7 @@ export class PlannerDashboard {
   }
 
   addEvent() {
-    this.navCtrl.push(CreateComponent);    
+    this.navCtrl.push(CreateComponent);
   }
 
   onOptionSelected($event: any) {

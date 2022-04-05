@@ -1,14 +1,14 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
-import { Platform, NavController, NavParams } from 'ionic-angular';
+import { MatTableDataSource } from '@angular/material';
+import { Sort } from '@angular/material/sort';
+import { Storage } from '@ionic/storage';
+import { NavController, NavParams, Platform } from 'ionic-angular';
+import { FileService } from '../../utilities/file.service';
 import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
-import { MatTableDataSource } from '@angular/material';
-import { SavingsStorageService, Saving, Filter } from './savings-storage.service';
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { FileService } from '../../utilities/file.service';
-import { Storage } from '@ionic/storage';
 import { FilterComponent } from './filter/filter.component';
-import { Sort } from '@angular/material/sort';
+import { Filter, Saving, SavingsStorageService } from './savings-storage.service';
 
 const Storage_Key = 'savings';
 
@@ -54,8 +54,8 @@ export class SavingsDashboard {
         this.savings = savingsData;
         if (Object.keys(this.filter).length != 0) {
           this.savings = this.savings.filter((item: Saving) =>
-            ((this.filter.type == null || item.type == this.filter.type) 
-              && (this.filter.name == null || item.name == this.filter.name)));
+          ((this.filter.type == null || item.type == this.filter.type)
+            && (this.filter.name == null || item.name == this.filter.name)));
         }
 
         let currentYear: number = new Date().getFullYear();
