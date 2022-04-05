@@ -22,11 +22,10 @@ export class PassphraseDashboard {
   url: any;
 
   selection = new SelectionModel<Passphrase>(true, []);
-  displayedColumns: string[] = ['passphraseName', 'passphraseText', 'viewPassPhrase','select'];
+  displayedColumns: string[] = ['passphraseTitle','passphraseName', 'passphraseText', 'editPassPhrase','select'];
   dataSource = new MatTableDataSource(this.passphrases);
 
-  constructor(private passphraseService: PassphraseStorageService, private plt: Platform, public navCtrl: NavController, private viewCtrl: ViewController,
-              private storage: Storage) {
+  constructor(private passphraseService: PassphraseStorageService, private plt: Platform, public navCtrl: NavController, private storage: Storage) {
     this.plt.ready().then(() => {
       this.loadItems();
     });

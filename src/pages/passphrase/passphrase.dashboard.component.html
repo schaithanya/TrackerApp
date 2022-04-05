@@ -20,20 +20,25 @@
 
   <table mat-table [dataSource]="dataSource">
 
+    <ng-container matColumnDef="passphraseTitle">
+      <th mat-header-cell *matHeaderCellDef> Title </th>
+      <td mat-cell *matCellDef="let element" (click)="editPassphraseData(element)"> {{element.passphraseTitle}} </td>
+    </ng-container>
+
     <ng-container matColumnDef="passphraseName">
-      <th mat-header-cell *matHeaderCellDef> Passphrase Name </th>
+      <th mat-header-cell *matHeaderCellDef> Name </th>
       <td mat-cell *matCellDef="let element" (click)="editPassphraseData(element)"> {{element.passphraseName}} </td>
     </ng-container>
 
     <ng-container matColumnDef="passphraseText">
-      <th mat-header-cell *matHeaderCellDef> Passphrase Text </th>
+      <th mat-header-cell *matHeaderCellDef> Text </th>
       <td mat-cell *matCellDef="let element" (click)="editPassphraseData(element)"> {{element.passphraseText}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="viewPassPhrase">
+    <ng-container matColumnDef="editPassPhrase">
       <th mat-header-cell *matHeaderCellDef> </th>
-      <td mat-cell *matCellDef="let element"> <button ion-button icon-only (click)="viewPassphrase(element)">
-          <ion-icon name="eye"></ion-icon>
+      <td mat-cell *matCellDef="let element"> <button ion-button icon-only (click)="editPassphraseData(element)">
+          <ion-icon name="brush"></ion-icon>
         </button> </td>
     </ng-container>    
 

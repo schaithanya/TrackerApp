@@ -24,7 +24,6 @@ export class EditComponent implements OnInit {
   }
 
   private updateDocumentData() {
-    this.passphrase.id = "Passphrase" + Date.now();
     this.documentService.updatePassphraseData(this.passphrase).then(item => {
       this.navCtrl.push(PassphraseDashboard);
     });

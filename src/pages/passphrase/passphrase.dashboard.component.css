@@ -11,3 +11,22 @@ table {
     align-items: center;    
 }
 
+.mat-column-passphraseTitle {
+  flex: 0 0 25%;
+}
+
+.mat-column-productName {
+  flex: 0 0 25%;
+}
+
+.mat-column-passphraseText {
+  flex: 0 0 25%;
+}
+.mat-column-editPassPhrase {
+  flex: 0 0 10%;
+}
+.mat-column-select {
+  flex: 0 0 15%;
+}
+
+

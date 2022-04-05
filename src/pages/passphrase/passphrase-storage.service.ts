@@ -5,6 +5,7 @@ const Storage_Key = 'passphrase';
 
 export interface Passphrase{
   id: string,
+  passphraseTitle: string,
   passphraseName: string,
   passphraseText: string    
 }

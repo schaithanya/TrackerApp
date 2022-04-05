@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
-import { File, FileEntry, IFile } from "@ionic-native/file/ngx";
 import { FileChooser } from '@ionic-native/file-chooser/ngx';
-import { FileTransfer, FileTransferObject } from "@ionic-native/file-transfer/ngx";
 import { FileOpener } from "@ionic-native/file-opener/ngx";
+import { FileTransfer, FileTransferObject } from "@ionic-native/file-transfer/ngx";
+import { File, FileEntry } from "@ionic-native/file/ngx";
 import { mime } from 'mime-types';
 
 export interface FileInfo {
