@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Passphrase, PassphraseStorageService } from '../passphrase-storage.service';
 import { PassphraseDashboard } from '../passphrase.dashboard.component';
@@ -16,7 +16,7 @@ export class CreateComponent implements OnInit {
   }
 
   private savePassphraseData() {
-    this.passphrase.id = "Passphrase" + Date.now();    
+    this.passphrase.id = "Passphrase" + Date.now();
     this.passphraseService.addPassphrase(this.passphrase).then(item => {
       this.navCtrl.push(PassphraseDashboard);
     });

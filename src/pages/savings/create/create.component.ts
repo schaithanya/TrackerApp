@@ -1,9 +1,9 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { SavingsStorageService, Saving } from '../../savings/savings-storage.service';
-import { SavingsDashboard } from '../../savings/savings.dashboard.component';
+import { Component, OnInit } from '@angular/core';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
-import { FileService, FileInfo } from '../../../utilities/file.service';
+import { NavController, NavParams } from 'ionic-angular';
+import { FileInfo, FileService } from '../../../utilities/file.service';
+import { Saving, SavingsStorageService } from '../../savings/savings-storage.service';
+import { SavingsDashboard } from '../../savings/savings.dashboard.component';
 
 @Component({
   selector: 'app-create',

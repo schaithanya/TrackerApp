@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 
 @Injectable()
-export class DateService{
+export class DateService {
 
-public getTodaysDate(){
+  public getTodaysDate() {
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth() + 1; //January is 0!
@@ -12,24 +12,23 @@ public getTodaysDate(){
     var fmtDay = '';
     var fmtMonth = '';
     if (dd < 10) {
-    fmtDay = '0' + dd;
-    } 
-    else
-    {
+      fmtDay = '0' + dd;
+    }
+    else {
       fmtDay = dd.toString();
     }
     if (mm < 10) {
       fmtMonth = '0' + mm;
-    } 
-    else{
-      fmtMonth = mm.toString(); 
+    }
+    else {
+      fmtMonth = mm.toString();
     }
 
     return yyyy + '-' + mm + '-' + dd;
   }
 
   public getWeekDates() {
-    let now = new Date();    
+    let now = new Date();
     let dayOfWeek = now.getDay(); //0-6
     let numDay = now.getDate();
 
@@ -45,7 +44,7 @@ public getTodaysDate(){
     return [start, end];
   }
 
-  public getDateInFormat(date: Date){    
+  public getDateInFormat(date: Date) {
     var dd = date.getDate();
     var mm = date.getMonth() + 1; //January is 0!
 
@@ -53,17 +52,16 @@ public getTodaysDate(){
     var fmtDay = '';
     var fmtMonth = '';
     if (dd < 10) {
-    fmtDay = '0' + dd;
-    } 
-    else
-    {
+      fmtDay = '0' + dd;
+    }
+    else {
       fmtDay = dd.toString();
     }
     if (mm < 10) {
       fmtMonth = '0' + mm;
-    } 
-    else{
-      fmtMonth = mm.toString(); 
+    }
+    else {
+      fmtMonth = mm.toString();
     }
 
     return yyyy + '-' + mm + '-' + dd;

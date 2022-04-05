@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
-import { SavingsStorageService, Saving } from '../../savings/savings-storage.service';
+import { NavController, NavParams, Platform } from 'ionic-angular';
+import { FileInfo, FileService } from '../../../utilities/file.service';
+import { Saving, SavingsStorageService } from '../../savings/savings-storage.service';
 import { SavingsDashboard } from '../../savings/savings.dashboard.component';
-import { FileService, FileInfo } from '../../../utilities/file.service';
 
 @Component({
   selector: 'app-edit',
