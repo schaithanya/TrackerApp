@@ -49,7 +49,7 @@
     "ionic2-calendar": "^0.4.1",
     "ionicons": "^4.6.3",
     "mime-types": "^2.1.24",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "ng2-charts": "^1.6.0",
     "rxjs": "6.2.2",
     "rxjs-compat": "6.5.3",
