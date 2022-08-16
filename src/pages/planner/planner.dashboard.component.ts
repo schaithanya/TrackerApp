@@ -28,7 +28,7 @@ export class PlannerDashboard {
     currentDate: new Date()
   };
 
-  constructor(public navCtrl: NavController, private actionSheetCtrl: ActionSheetController, private plannerService: PlannerService, private plt: Platform, private navParams: NavParams, private dateService: DateService) {
+  constructor(public navCtrl: NavController, private actionSheetCtrl: ActionSheetController, private plannerService: PlannerService, private plt: Platform, private dateService: DateService) {
     this.plt.ready().then(() => {
       this.loadEvents();
     });

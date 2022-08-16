@@ -1,12 +1,12 @@
+import { SelectionModel } from '@angular/cdk/collections';
 import { Component } from '@angular/core';
-import { Platform, NavController, ViewController } from 'ionic-angular';
-import { CreateComponent } from '../document/create/create.component';
-import { EditComponent } from '../document/edit/edit.component';
-import {SelectionModel} from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material';
-import { DocumentStorageService, Document} from '../document/document-storage.service';
-import { FileService } from '../../utilities/file.service';
 import { Storage } from '@ionic/storage';
+import { NavController, Platform } from 'ionic-angular';
+import { FileService } from '../../utilities/file.service';
+import { CreateComponent } from '../document/create/create.component';
+import { Document, DocumentStorageService } from '../document/document-storage.service';
+import { EditComponent } from '../document/edit/edit.component';
 
 const Storage_Key = 'documents';
 
@@ -26,8 +26,7 @@ export class DocumentDashboard {
   displayedColumns: string[] = ['documentName','category', 'documentPath','download', 'select'];
   dataSource = new MatTableDataSource(this.documents); 
   
-  constructor(private documentService: DocumentStorageService, private plt: Platform, public navCtrl: NavController, private viewCtrl: ViewController,
-    private fileService: FileService, private storage: Storage) {    
+  constructor(private documentService: DocumentStorageService, private plt: Platform, public navCtrl: NavController, private fileService: FileService, private storage: Storage) {    
       this.plt.ready().then(() => {      
         this.loadItems();
       });
