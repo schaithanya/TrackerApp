@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
 import { DateService } from '../../utilities/date.service';
 import { Expense, ExpenseStorageService, Filter } from '../expense/expense-storage.service';
+import { FilterComponent } from '../expense/filter/filter.component';
+import { CreateComponent } from '../expense/create/create.component';
 
 @Component({
   selector: 'ExpenseDashboard',
@@ -103,5 +105,13 @@ export class ExpenseDashboard {
     let createdDate = new Date(date);
     let now = new Date();
     return now.getFullYear() == createdDate.getFullYear();
+  }
+
+  private showFilterExpenses() {
+    this.navCtrl.push(FilterComponent, { filterData: this.filter });
+  }
+
+  private createExpense() {
+    this.navCtrl.push(CreateComponent);
   }
 }
