@@ -3,6 +3,7 @@ import { TrustedHtmlString } from '@angular/core/src/sanitization/bypass';
 import { Storage } from '@ionic/storage';
 import { FileService, FileInfo } from '../../utilities/file.service';
 
+
 const Storage_Key = 'savings';
 
 export interface Saving{
@@ -30,7 +31,11 @@ export class SavingsStorageService{
   constructor(private storage: Storage, private fileService: FileService){            
   }
 
-  public async getSavingsData(): Promise<Saving[]>{    
+  public async getSavingsData(): Promise<Saving[]>{   
+    fetch('../../assets/data/savings.json').then(res => res.json()).then(json => {
+      console.log("results: ", json);
+    });
+     
     return await this.storage.get(Storage_Key);
   }
 
