@@ -89,12 +89,48 @@ export class SavingsResult {
       TotalMatVal: savingsData ? savingsData.filter((item: Saving) => item.type == 'Insurance').reduce((sum, current) => sum + (+current.matAmount || 0), 0).toFixed(2) : '0',
       TotalIntVal: savingsData ? savingsData.filter((item: Saving) => item.type == 'Insurance').reduce((sum, current) => sum + (+current.interest || 0), 0).toFixed(2) : '0'
     };
+    let saving6: SavingResult;
+    saving6 = {
+      Index: 5,
+      SavingName: 'NPS',
+      TotalAmount: savingsData ? savingsData.filter((item: Saving) => item.type == 'NPS').reduce((sum, current) => sum + (+current.amount || 0), 0).toFixed(2) : '0',
+      TotalMatVal: savingsData ? savingsData.filter((item: Saving) => item.type == 'NPS').reduce((sum, current) => sum + (+current.matAmount || 0), 0).toFixed(2) : '0',
+      TotalIntVal: savingsData ? savingsData.filter((item: Saving) => item.type == 'NPS').reduce((sum, current) => sum + (+current.interest || 0), 0).toFixed(2) : '0'
+    };
+    let saving7: SavingResult;
+    saving7 = {
+      Index: 6,
+      SavingName: 'CASH',
+      TotalAmount: savingsData ? savingsData.filter((item: Saving) => item.type == 'CASH').reduce((sum, current) => sum + (+current.amount || 0), 0).toFixed(2) : '0',
+      TotalMatVal: savingsData ? savingsData.filter((item: Saving) => item.type == 'CASH').reduce((sum, current) => sum + (+current.matAmount || 0), 0).toFixed(2) : '0',
+      TotalIntVal: savingsData ? savingsData.filter((item: Saving) => item.type == 'CASH').reduce((sum, current) => sum + (+current.interest || 0), 0).toFixed(2) : '0'
+    };
+    let saving8: SavingResult;
+    saving8 = {
+      Index: 7,
+      SavingName: 'PF',
+      TotalAmount: savingsData ? savingsData.filter((item: Saving) => item.type == 'PF').reduce((sum, current) => sum + (+current.amount || 0), 0).toFixed(2) : '0',
+      TotalMatVal: savingsData ? savingsData.filter((item: Saving) => item.type == 'PF').reduce((sum, current) => sum + (+current.matAmount || 0), 0).toFixed(2) : '0',
+      TotalIntVal: savingsData ? savingsData.filter((item: Saving) => item.type == 'PF').reduce((sum, current) => sum + (+current.interest || 0), 0).toFixed(2) : '0'
+    };
+    let saving9: SavingResult;
+    saving9 = {
+      Index: 8,
+      SavingName: 'OTHERS',
+      TotalAmount: savingsData ? savingsData.filter((item: Saving) => item.type == 'OTHERS').reduce((sum, current) => sum + (+current.amount || 0), 0).toFixed(2) : '0',
+      TotalMatVal: savingsData ? savingsData.filter((item: Saving) => item.type == 'OTHERS').reduce((sum, current) => sum + (+current.matAmount || 0), 0).toFixed(2) : '0',
+      TotalIntVal: savingsData ? savingsData.filter((item: Saving) => item.type == 'OTHERS').reduce((sum, current) => sum + (+current.interest || 0), 0).toFixed(2) : '0'
+    };
     this.savingResults = [];
     this.savingResults.push(saving1)
     this.savingResults.push(saving2);
     this.savingResults.push(saving3);
     this.savingResults.push(saving4);
     this.savingResults.push(saving5);
+    this.savingResults.push(saving6);
+    this.savingResults.push(saving7);
+    this.savingResults.push(saving8);
+    this.savingResults.push(saving9);
   }
 }
 

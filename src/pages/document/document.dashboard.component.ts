@@ -23,7 +23,7 @@ export class DocumentDashboard {
   url: any;
 
   selection = new SelectionModel<Document>(true, []);
-  displayedColumns: string[] = ['documentName','category', 'documentPath','download', 'select'];
+  displayedColumns: string[] = ['documentName', 'documentPath','download', 'select'];
   dataSource = new MatTableDataSource(this.documents); 
   
   constructor(private documentService: DocumentStorageService, private plt: Platform, public navCtrl: NavController, private fileService: FileService, private storage: Storage) {    

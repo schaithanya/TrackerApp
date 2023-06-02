@@ -25,11 +25,6 @@
       <td mat-cell *matCellDef="let element" (click)="editDocumentData(element)"> {{element.documentName}} </td>
     </ng-container>
   
-    <ng-container matColumnDef="category">
-      <th mat-header-cell *matHeaderCellDef> Type </th>
-      <td mat-cell *matCellDef="let element" (click)="editDocumentData(element)"> {{element.category}} </td>
-    </ng-container>
-  
     <ng-container matColumnDef="documentPath">
       <th mat-header-cell *matHeaderCellDef>  </th>
       <td mat-cell *matCellDef="let element"> <button ion-button icon-only 

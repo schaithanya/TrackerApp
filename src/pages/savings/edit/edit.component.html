@@ -17,6 +17,9 @@
         <ion-option value="MF">MF</ion-option>
         <ion-option value="PPF">PPF</ion-option>
         <ion-option value="CASH">CASH</ion-option>
+        <ion-option value="NPS">NPS</ion-option>
+        <ion-option value="PF">PF</ion-option>
+        <ion-option value="OTHERS">OTHERS</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
@@ -25,8 +28,8 @@
     </ion-item>
     <ion-item>
       <ion-label>Maturity Amount</ion-label>
-      <ion-input type="number" [(ngModel)]="saving.matAmount" name="matAmount" required=""  ></ion-input>
-  </ion-item> 
+      <ion-input type="number" [(ngModel)]="saving.matAmount" name="matAmount" required=""></ion-input>
+    </ion-item>
     <ion-item>
       <ion-label>Start Date</ion-label>
       <ion-datetime displayFormat="MM/DD/YYYY" placeholder="Select Date" [(ngModel)]="saving.createdDate"
