@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Saving } from '../../savings-storage.service';
 
 export interface SavingResult {
@@ -26,6 +26,8 @@ export class SavingsResult {
     this.currentSlide(this.slideIndex);
   }
 
+  @Output() dataEvent = new EventEmitter<string>();
+
   nextSlide(index: number) {
     this.slideIndex = index >= this.savingResults.length - 1 ? 0 : this.slideIndex + 1;
     this.currentSlide(this.slideIndex);
@@ -38,6 +40,7 @@ export class SavingsResult {
   currentSlide(index: number) {
     this.slideIndex = index;
     this.saving = this.savingResults[this.slideIndex];
+    this.dataEvent.emit(this.saving.SavingName);
   }
 
   ngOnChanges() {

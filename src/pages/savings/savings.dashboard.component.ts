@@ -31,11 +31,11 @@ export class SavingsDashboard {
   expandedElement: Saving | null;
   filter: Filter = <Filter>{};
 
-
   savings: Saving[] = [];
   sortedData: Saving[];
   saving: Saving = <Saving>{};
   dataSource = new MatTableDataSource(this.savings);
+  currentSelectedType: string = '';
 
   constructor(private savingsService: SavingsStorageService, private plt: Platform,
     public navCtrl: NavController, private fileService: FileService, private navParams: NavParams,
@@ -60,6 +60,11 @@ export class SavingsDashboard {
 
         let currentYear: number = new Date().getFullYear();
         this.savings = this.savings.filter((item: Saving) => ((new Date(item.endDate)).getFullYear() >= currentYear));
+
+        if (this.currentSelectedType !== 'ALL') {
+          this.savings = this.savings.filter((item: Saving) => item.type.toLowerCase() == this.currentSelectedType.toLowerCase());
+        }
+
         let initialSort: Sort = { active: 'endDate', direction: 'asc' };
         this.sortData(initialSort);
         //this.dataSource = new MatTableDataSource(this.sortedData);
@@ -69,6 +74,13 @@ export class SavingsDashboard {
 
   private showFilterSavings() {
     this.navCtrl.push(FilterComponent, { filterData: this.filter });
+  }
+
+  receiveData(currentSelectedType: string) {
+    if (this.currentSelectedType !== currentSelectedType) {
+      this.currentSelectedType = currentSelectedType;
+      this.loadItems();
+    }
   }
 
   deleteSaving(saving: Saving) {

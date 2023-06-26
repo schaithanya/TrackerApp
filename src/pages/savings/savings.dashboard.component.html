@@ -20,7 +20,7 @@
     <ion-input (keyup)="applyFilter($event.target.value)"></ion-input>
   </ion-item>
   <ion-item>
-    <savings-results [savings]="savings"></savings-results>
+    <savings-results [savings]="savings" (dataEvent)="receiveData($event)"></savings-results>
   </ion-item>
   <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8"  matSort (matSortChange)="sortData($event)">
     <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
