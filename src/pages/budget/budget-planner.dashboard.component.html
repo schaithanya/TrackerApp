@@ -1,0 +1,46 @@
+<ion-header>
+	<ion-toolbar color="primary">
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>Budget Planner</ion-title>
+		<ion-buttons end>
+			<button ion-button icon-only (click)="addExpense()">
+				<ion-icon name="add-circle"></ion-icon>
+			</button>
+			<button ion-button icon-only (click)="addExpense()">
+				<ion-icon name="add-circle"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="has-header">
+	<ion-row>
+		<ion-title>{{viewTitle}}</ion-title>
+		<button ion-button [disabled]="isToday" (click)="today()">Today</button>
+	</ion-row>
+	<ion-row class="custom-calendar">
+		<calendar [monthviewEventDetailTemplate]="template" [showEventDetail]="false" [eventSource]="eventSource"
+			[markDisabled]="markDisabled" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate"
+			(onCurrentDateChanged)="onCurrentDateChanged($event)" (onEventSelected)="onEventSelected($event)"
+			(onTitleChanged)="onViewTitleChanged($event)" (onTimeSelected)="onTimeSelected($event)" step="30">
+		</calendar>
+	</ion-row>
+	<ion-row>
+		<ion-list lines="full" *ngFor="let item of expenses">
+			<ion-item>
+				<ion-label>{{item.expenseDate}}</ion-label>
+			</ion-item>
+			<ion-item>
+				<ion-label>{{item.amount}}</ion-label>
+			</ion-item>
+			<ion-item>
+				<ion-label>{{item.expenseType}}</ion-label>
+			</ion-item>
+			<ion-item>
+				<ion-label>{{item.expenseDate}}</ion-label>
+			</ion-item>
+		</ion-list>
+	</ion-row>
+</ion-content>

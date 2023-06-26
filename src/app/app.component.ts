@@ -7,6 +7,7 @@ import { SavingsDashboard } from '../pages/savings/savings.dashboard.component';
 import { PlannerDashboard } from '../pages/planner/planner.dashboard.component';
 import { FileService } from '../utilities/file.service';
 import { PassphraseDashboard } from '../pages/passphrase/passphrase.dashboard.component';
+import { BudgetPlannerDashboard } from '../pages/budget/budget-planner.dashboard.component';
 
 @Component({
   templateUrl: 'app.html'
@@ -29,7 +30,8 @@ export class MyApp {
       { title: 'Passphrase Tracker', component: PassphraseDashboard } ,  
       { title: 'Expense Tracker', component: ExpenseDashboard },
       { title: 'My Story', component: DashboardComponent }, 
-      {title: 'My Scheduler', component: PlannerDashboard}     
+      {title: 'My Scheduler', component: PlannerDashboard},
+      {title: 'Budget Planner', component: BudgetPlannerDashboard}         
     ];
 
   }

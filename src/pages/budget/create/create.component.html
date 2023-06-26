@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title> Expense Details </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <form (ngSubmit)="saveExpenseData()">
+    <ion-item>
+      <ion-label>Expense Type</ion-label>
+      <ion-select placeholder="Select" [(ngModel)]="expense.type" type="text" name="type" required="">
+        <ion-option *ngFor="let item of expenseTypes" value={{item}}>{{item}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Amount</ion-label>
+      <ion-input type="number" [(ngModel)]="expense.amount" name="amount" required=""></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Expense Date</ion-label>
+      <ion-datetime displayFormat="MM/DD/YYYY" placeholder="Select Date" [(ngModel)]="expense.expenseDate"
+        name="expenseDate" max="2099-12-31">
+      </ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Expense Name</ion-label>
+      <ion-input type="text" [(ngModel)]="expense.name" name="name" required=""></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Comments</ion-label>
+      <ion-input type="text" [(ngModel)]="expense.comments" name="Comments" required=""></ion-input>
+    </ion-item>
+    <button ion-button type="submit">Save Data</button>
+  </form>
+</ion-content>

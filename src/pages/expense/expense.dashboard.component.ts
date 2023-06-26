@@ -4,6 +4,7 @@ import { DateService } from '../../utilities/date.service';
 import { Expense, ExpenseStorageService, Filter } from '../expense/expense-storage.service';
 import { FilterComponent } from '../expense/filter/filter.component';
 import { CreateComponent } from '../expense/create/create.component';
+import {DisplayComponent} from '../expense/display/display.component';
 
 @Component({
   selector: 'ExpenseDashboard',
@@ -113,5 +114,9 @@ export class ExpenseDashboard {
 
   private createExpense() {
     this.navCtrl.push(CreateComponent);
+  }
+
+  private showDetailExpense(type: string) {
+    this.navCtrl.push(DisplayComponent, { expenseType: type, filterData: this.filter });
   }
 }

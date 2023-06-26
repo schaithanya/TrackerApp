@@ -32,4 +32,19 @@ export class EditComponent implements OnInit {
     this.fileType = this.saving.documentPath.type;
     this.url = this.saving.documentPath;
   }
+
+  private updateSavingData() {
+    if (this.saving.documentExt && this.fileInfo && this.fileInfo.fileExt
+      && this.saving.documentExt !== this.fileInfo.fileExt) {
+      this.saving.documentType = this.fileInfo.fileType;
+      this.saving.documentExt = this.fileInfo.fileExt;
+      this.fileInfo.fileName = this.saving.id;
+    }
+
+    this.saving.interest = (+this.saving.matAmount - +this.saving.amount).toFixed(2);
+
+    this.savingService.updateSaving(this.saving, this.fileInfo).then(item => {
+      this.navCtrl.push(SavingsDashboard);
+    });
+  }
 }

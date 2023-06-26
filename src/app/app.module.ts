@@ -16,6 +16,7 @@ import { FileChooser } from '@ionic-native/file-chooser/ngx';
 import { DateService } from '../utilities/date.service';
 import { Camera } from '@ionic-native/camera/ngx';
 import { PassphraseModule } from '../pages/passphrase/passphrase.module';
+import { BudgetPlannerModule } from '../pages/budget/budget-planner.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { PassphraseModule } from '../pages/passphrase/passphrase.module';
     SavingsModule,
     PlannerModule,
     PassphraseModule,
+    BudgetPlannerModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()   
   ],
