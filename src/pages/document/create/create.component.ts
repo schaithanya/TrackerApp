@@ -6,6 +6,7 @@ import { File } from "@ionic-native/file/ngx";
 import { NavController, NavParams } from 'ionic-angular';
 import { FileInfo, FileService } from '../../../utilities/file.service';
 import { Document, DocumentStorageService } from '../../document/document-storage.service';
+import { DocumentDashboard } from '../document.dashboard.component';
 
 @Component({
   selector: 'app-create',
@@ -17,11 +18,20 @@ export class CreateComponent implements OnInit {
   fileInfo: FileInfo = <FileInfo>{};
   folderName: string = "Documents";
   document: Document = <Document>{};
-  constructor(public navCtrl: NavController, public navParams: NavParams, private fileService: FileService) { }
+  constructor(private documentService: DocumentStorageService, public navCtrl: NavController, public navParams: NavParams, private fileService: FileService) { }
 
   ngOnInit() {
   }
 
+  private saveDocumentData(){       
+    this.document.id = "Document" + Date.now();    
+    this.document.type = this.fileInfo.fileType;
+    this.document.ext = this.fileInfo.fileExt;
+    this.fileInfo.fileName = this.document.id;
+    this.documentService.addDocument(this.document, this.fileInfo).then(item => {      
+    this.navCtrl.push(DocumentDashboard);
+    });
+  }  
 
   onSelectFile() {
     this.fileInfo = this.fileService.chooseFile();
