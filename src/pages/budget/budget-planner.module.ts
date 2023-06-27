@@ -9,9 +9,10 @@ import { MaterialModule } from '../../app/material.module';
 import { PlannerDashboard } from '../planner/planner.dashboard.component';
 import { CreateComponent } from './create/create.component';
 import { BudgetPlannerDashboard } from './budget-planner.dashboard.component';
+import { BudgetPlannerSettings } from './budgetPlannerSettings/budget-planner-setting.component';
 
 @NgModule({
-  declarations: [BudgetPlannerDashboard, CreateComponent],
+  declarations: [BudgetPlannerDashboard, CreateComponent, BudgetPlannerSettings],
   imports: [
     CommonModule,
     IonicModule,
@@ -21,8 +22,8 @@ import { BudgetPlannerDashboard } from './budget-planner.dashboard.component';
     ReactiveFormsModule,
     NgCalendarModule
   ],
-  exports: [BudgetPlannerDashboard, CreateComponent],
-  entryComponents: [BudgetPlannerDashboard, CreateComponent]
+  exports: [BudgetPlannerDashboard, CreateComponent, BudgetPlannerSettings],
+  entryComponents: [BudgetPlannerDashboard, CreateComponent, BudgetPlannerSettings]
 })
 
 export class BudgetPlannerModule {

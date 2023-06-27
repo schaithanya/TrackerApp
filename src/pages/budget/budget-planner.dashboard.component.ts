@@ -3,6 +3,7 @@ import { ActionSheetController, NavController, NavParams, Platform } from 'ionic
 import { DateService } from '../../utilities/date.service';
 import { CreateComponent } from './create/create.component';
 import { Expense, BudgetPlannerStorageService } from './budget-planner-storage.service';
+import { BudgetPlannerSettings } from './budgetPlannerSettings/budget-planner-setting.component';
 
 @Component({
   templateUrl: 'budget-planner.dashboard.component.html',
@@ -76,6 +77,10 @@ export class BudgetPlannerDashboard {
 
   addExpense() {
     this.navCtrl.push(CreateComponent);
+  }
+
+  navigateToBudgetPlanner() {
+    this.navCtrl.push(BudgetPlannerSettings);
   }
 
   onOptionSelected($expense: any) {

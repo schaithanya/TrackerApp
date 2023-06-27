@@ -12,12 +12,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-item>
-    <ion-label>Filter</ion-label>
-    <ion-input (keyup)="applyFilter($event.target.value)"></ion-input>
-  </ion-item>
-
+<ion-content>
+  <ion-searchbar [debounce]="1000" (ionInput)="applyFilter($event.target.value)"></ion-searchbar>
   <table mat-table [dataSource]="dataSource">
 
     <ng-container matColumnDef="passphraseTitle">

@@ -13,18 +13,14 @@ export interface Expense {
   comments: string
 }
 
-export enum ExpenseTypes {
-  Electricity = 0,
-  Water = 1,
-  LifeInsurance = 2,
-  HouseTax = 3,
-  Broadband = 4,
-  Recharge = 5,
-  LPG = 6,
-  Shopping = 7,
-  Travel = 8,
-  Others = 9
+export interface ExpenseType {
+  name: string,
+  icon: string
 }
+
+export const ExpenseTypes: ExpenseType[] = [{ name: 'Electricity', icon: 'ion-power' },
+                                            { name: 'Water', icon: 'ion-power' },
+                                            { name: 'Insurance', icon: 'ion-power' }];
 
 export const expenseIcon = {
   'Electricity': 'ion-power',

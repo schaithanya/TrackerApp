@@ -15,10 +15,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-item>
-    <ion-label>Filter</ion-label>
-    <ion-input (keyup)="applyFilter($event.target.value)"></ion-input>
-  </ion-item>
+  <ion-searchbar [debounce]="1000" (ionInput)="applyFilter($event.target.value)"></ion-searchbar>
   <ion-item>
     <savings-results [savings]="savings" (dataEvent)="receiveData($event)"></savings-results>
   </ion-item>
