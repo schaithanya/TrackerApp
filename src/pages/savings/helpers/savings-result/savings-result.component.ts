@@ -119,6 +119,14 @@ export class SavingsResult {
     let saving9: SavingResult;
     saving9 = {
       Index: 8,
+      SavingName: 'CRYPTOS',
+      TotalAmount: savingsData ? savingsData.filter((item: Saving) => item.type == 'CRYPTOS').reduce((sum, current) => sum + (+current.amount || 0), 0).toFixed(2) : '0',
+      TotalMatVal: savingsData ? savingsData.filter((item: Saving) => item.type == 'CRYPTOS').reduce((sum, current) => sum + (+current.matAmount || 0), 0).toFixed(2) : '0',
+      TotalIntVal: savingsData ? savingsData.filter((item: Saving) => item.type == 'CRYPTOS').reduce((sum, current) => sum + (+current.interest || 0), 0).toFixed(2) : '0'
+    };
+    let saving10: SavingResult;
+    saving10 = {
+      Index: 9,
       SavingName: 'OTHERS',
       TotalAmount: savingsData ? savingsData.filter((item: Saving) => item.type == 'OTHERS').reduce((sum, current) => sum + (+current.amount || 0), 0).toFixed(2) : '0',
       TotalMatVal: savingsData ? savingsData.filter((item: Saving) => item.type == 'OTHERS').reduce((sum, current) => sum + (+current.matAmount || 0), 0).toFixed(2) : '0',
@@ -134,6 +142,7 @@ export class SavingsResult {
     this.savingResults.push(saving7);
     this.savingResults.push(saving8);
     this.savingResults.push(saving9);
+    this.savingResults.push(saving10);
   }
 }
 
